@@ -4,8 +4,10 @@
 <title>fun</title>
 <body>
 <script src="pixi.min.js"></script>
-    
+<script src="socket.io.js"></script> 
 <script>
+var socket = io();    
+    
 //Aliases
 var Container = PIXI.Container,
     autoDetectRenderer = PIXI.autoDetectRenderer,
