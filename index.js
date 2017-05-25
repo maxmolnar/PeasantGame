@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var functions = require('/js/Functions.js')();
+var functions = require('./js/Functions.js')();
 
 //IDK if this works or not
 init();
