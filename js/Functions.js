@@ -12,4 +12,8 @@ module.exports = function() {
 						standing: 'peasant'};
 		}
 	}
+
+	this.update = function() {
+		console.log("updating");
+	}
 }

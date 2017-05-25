@@ -5,6 +5,8 @@ var functions = require('/js/Functions.js')();
 
 //IDK if this works or not
 init();
+//sets update to run every 5 seconds
+setInterval(update, 5000);
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
