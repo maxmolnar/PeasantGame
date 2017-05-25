@@ -3,6 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 var functions = require('./js/Functions.js')();
 var io = require('socket.io')(http);
+var List = require("collections/list");
 
 
 //IDK if this works or not
