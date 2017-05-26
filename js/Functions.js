@@ -1,4 +1,5 @@
 //function.js
+var List = require("collections/list");
 
 //Array of tile objects - holds game state
 var board = [];
