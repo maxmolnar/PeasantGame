@@ -21,22 +21,28 @@ var players = new List();
 var interactions = new List();
 var moves = new List();
 
-//Theoretically allows calls from other files
+//Allows calls from other files
 module.exports = function() {
 	//initializes game state at server start up
 	this.init = function() {
+
+		//Hard coded values for now
 		for (var i = 0; i < boardSize; i++) {
 			var ter = 'grass';
 			var stand = 'empty';
 
 			//spawn 3 npcs
-			if (i === 15 || i === 25 || i === 30) {
+			if (i === 15 || i === 20 || i === 30) {
 				stand = 'peasant';
 
 				//TODO: define stats
 				npcs.push({tile : i,
 						role : 'peasant',
 						strength : 4});
+			} else if (i === 25) {
+				stand = 'base';
+			} else if (i === 4 || i === 6 || i === 43) {
+				stand = 'tree';
 			}
 			board[i] = {terrain: ter,
 						standing: stand};
@@ -47,7 +53,7 @@ module.exports = function() {
 	this.update = function() {
 		console.log("updating");
 		//loop through npc list; assign actions
-		
+
 		//update interactions first
 
 		//update moves last
