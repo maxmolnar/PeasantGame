@@ -5,6 +5,7 @@ var http = require('http').Server(app);
 //var io = require('socket.io')(http);
 var List = require("collections/list");
 
+//Starting a collection of config vars here, theoretically they'll get moved to their own file soon
 var boardSize = 50;
 
 //Array of tile objects - holds game state
