@@ -55,7 +55,7 @@ module.exports = function() {
 		//loop through npc list; assign actions
 
 		//update interactions first
-
+		 
 		//update moves last
         io.emit('board state',board);
 	}
