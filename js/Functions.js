@@ -1,8 +1,11 @@
 //function.js
+<<<<<<< HEAD
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 //var io = require('socket.io')(http);
+=======
+>>>>>>> 71e6d8a60d8a06cac8112dae92b32206221147ef
 var List = require("collections/list");
 
 //Array of tile objects - holds game state
