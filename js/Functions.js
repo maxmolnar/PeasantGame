@@ -62,6 +62,8 @@ module.exports = function() {
 
 	//call this when player first connects to game server
 	this.playerSpawn = function() {
+		io.emit('board state',board);
+		
 		players.push({tile : 4,
 					role : 'peasant',
 					strength : 4});
