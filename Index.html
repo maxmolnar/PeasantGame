@@ -52,6 +52,9 @@
                     tiles[tileNmb].y = j * (tiles[0].height - (Math.sin(Math.PI/6) * (tiles[0].height / 2)));
                     stage.addChild(tiles[tileNmb]);       
                     
+                    //Will plan to name tile.standing var the same as the .png so this functin can be: 
+                    // new Sprite(resources["images/" + tile.standing + ".png"].texture);
+
                     if(boardState[tileNmb].standing == 'peasant'){
                         console.log('drawing peasant');
                         peasants[tileNmb] = new Sprite(resources["images/peasant.png"].texture);

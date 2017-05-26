@@ -5,18 +5,22 @@ var http = require('http').Server(app);
 //var io = require('socket.io')(http);
 var List = require("collections/list");
 
+var boardSize = 50;
+
 //Array of tile objects - holds game state
 board = [];
-//List of current npcs
+
+//List of current npcs - might change to heap of IDs
 npcs = new List();
-//List of current players
+
+//List of current players - might change to hea of IDs
 var players = new List();
 
 //Theoretically allows calls from other files
 module.exports = function() {
 	//initializes game state at server start up
 	this.init = function() {
-		for (var i = 0; i < 50; i++) {
+		for (var i = 0; i < boardSize; i++) {
 			var ter = 'grass';
 			var stand = 'empty';
 
