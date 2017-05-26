@@ -17,6 +17,10 @@ npcs = new List();
 //List of current players - might change to hea of IDs
 var players = new List();
 
+//Array of interactions and moves to be updated
+var interactions = new List();
+var moves = new List();
+
 //Theoretically allows calls from other files
 module.exports = function() {
 	//initializes game state at server start up
@@ -42,6 +46,11 @@ module.exports = function() {
 
 	this.update = function() {
 		console.log("updating");
+		//loop through npc list; assign actions
+		
+		//update interactions first
+
+		//update moves last
         io.emit('board state',board);
 	}
 
