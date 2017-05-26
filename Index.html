@@ -7,6 +7,8 @@
     <script>
         var boardState;
         var socket = io();
+        var mouseDown = false;
+        var mouseLoc = {x: 0, y: 0};
         //Aliases
         var Container = PIXI.Container,
             autoDetectRenderer = PIXI.autoDetectRenderer,
@@ -20,8 +22,13 @@
             renderer = autoDetectRenderer(900, 900);
         document.body.appendChild(renderer.view);
         
+        var tileHeight = 103,
+            tileWidth = 88;
+        
         var tiles = [];
         var peasants = [];
+        
+        var screenLoc = {x: 0, y: 0 };
         //Use Pixi's built-in `loader` module to load an image
         loader
             .add("images/ground.png")
@@ -44,25 +51,52 @@
             for(var j = 0; j < 7; j++){
                 for(var i = 0; i < 7; i++){
                     var tileNmb = i + j * 7;
-                    if(boardState[tileNmb].terrain == 'grass'){
-                        console.log('drawing grass');
-                        tiles[tileNmb] = new Sprite(resources["images/ground.png"].texture);
+                      var ter = new Sprite(resources["images/ground.png"].texture);
+                      if(typeof tiles[tileNmb] === "undefined"){
+                          if(boardState[tileNmb].terrain == 'grass'){
+                              ter = new Sprite(resources["images/ground.png"].texture);
+                              
+                          }
+                          tiles[tileNmb] = ter;
                     }
-                    tiles[tileNmb].x = i * tiles[0].width + ((j % 2) * tiles[0].width /2);
-                    tiles[tileNmb].y = j * (tiles[0].height - (Math.sin(Math.PI/6) * (tiles[0].height / 2)));
-                    stage.addChild(tiles[tileNmb]);       
+                    tiles[tileNmb].width = tileWidth;
+                    tiles[tileNmb].height = tileHeight;
+                    tiles[tileNmb].x = i * tileWidth + ((j % 2) * tileWidth / 2 - screenLoc.x);
+                    tiles[tileNmb].y = j * (tileHeight - (Math.sin(Math.PI/6) * (tileHeight / 2))) - screenLoc.y;
+                    stage.addChild(tiles[tileNmb]);   
                     
-                    if(boardState[tileNmb].standing == 'peasant'){
-                        console.log('drawing peasant');
-                        peasants[tileNmb] = new Sprite(resources["images/peasant.png"].texture);
-                        peasants[tileNmb].x = i * tiles[0].width + ((j % 2) * tiles[0].width /2) + tiles[0].width / 2 - 25;
-                        peasants[tileNmb].y = j * (tiles[0].height - (Math.sin(Math.PI/6) * (tiles[0].height / 2))) + tiles[0].height / 2 - 34.5; 
+                    if(boardState[tileNmb].standing != 'empty'){
+                        if(typeof peasants[tileNmb] === "undefined"){
+                            console.log('drawing peasant'); 
+                            peasants[tileNmb] = new Sprite(resources["images/peasant.png"].texture);
+                        }
+                        peasants[tileNmb].x = tiles[tileNmb].x + tileWidth / 2 - peasants[tileNmb].width / 2;
+                        peasants[tileNmb].y = tiles[tileNmb].y + tileHeight / 2 - peasants[tileNmb].height / 2; 
                         stage.addChild(peasants[tileNmb]);
-                    }
+                    }       
                 }
             }
             renderer.render(stage);
         }
         
+            
+        window.addEventListener('mousemove', function(event) {
+            if(mouseDown){
+                screenLoc.x =  mouseLoc.x - event.clientX;
+                screenLoc.y =  mouseLoc.y - event.clientY;
+                drawBoard();
+            }
+         });
+        
+        window.addEventListener('mousedown', function(event) {
+            mouseDown = true;
+            mouseLoc.x = event.clientX;
+            mouseLoc.y = event.clientY;
+        });
+        
+        window.addEventListener('mouseup', function(event) {
+            mouseDown = false;
+        });
+
     </script>
 </body>

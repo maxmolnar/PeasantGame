@@ -19,6 +19,7 @@ app.use(express.static(__dirname + '/js'));
 
 io.on('connection', function(socket){
   console.log('a user connected');
+    
 });
 
 http.listen(3000, function () {
