@@ -28,6 +28,8 @@ module.exports = function() {
 			//spawn 3 npcs
 			if (i === 15 || i === 25 || i === 30) {
 				stand = 'peasant';
+
+				//TODO: define stats
 				npcs.push({tile : i,
 						role : 'peasant',
 						strength : 4});
@@ -41,5 +43,13 @@ module.exports = function() {
 	this.update = function() {
 		console.log("updating");
         io.emit('board state',board);
+	}
+
+	//call this when player first connects to game server
+	this.playerSpawn = function() {
+		players.push({tile : 4,
+					role : 'peasant',
+					strength : 4});
+		board[4].standing = 'peasant';
 	}
 }
