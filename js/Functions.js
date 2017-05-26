@@ -27,7 +27,6 @@ module.exports = function() {
 	this.init = function() {
 
 		//Hard coded values for now
-		console.log('called');
 		for (var i = 0; i < boardSize; i++) {
 			var ter = 'grass';
 			var stand = 'empty';
