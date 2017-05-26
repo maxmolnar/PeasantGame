@@ -1,9 +1,14 @@
 //function.js
+var express = require('express');
+var app = express();
+var http = require('http').Server(app);
+//var io = require('socket.io')(http);
+var List = require("collections/list");
 
 //Array of tile objects - holds game state
-var board = [];
+board = [];
 //List of current npcs
-var npcs = new List();
+npcs = new List();
 //List of current players
 var players = new List();
 
@@ -25,9 +30,11 @@ module.exports = function() {
 			board[i] = {terrain: ter,
 						standing: stand};
 		}
+        
 	}
 
 	this.update = function() {
-		console.log("updating");	
+		console.log("updating");
+        io.emit('board state',board);
 	}
 }

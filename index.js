@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var functions = require('./js/Functions.js')();
-var io = require('socket.io')(http);
+io = require('socket.io')(http);
 var List = require("collections/list");
 
 
