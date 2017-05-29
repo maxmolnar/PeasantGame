@@ -8,6 +8,7 @@
         var boardState;
         var socket = io();
         var mouseDown = false;
+        
         var mouseLoc = {x: 0, y: 0};
         //Aliases
         var Container = PIXI.Container,
@@ -77,12 +78,12 @@
             }
             renderer.render(stage);
         }
-        
+            
             
         window.addEventListener('mousemove', function(event) {
             if(mouseDown){
-                screenLoc.x =  mouseLoc.x - event.clientX;
-                screenLoc.y =  mouseLoc.y - event.clientY;
+                screenLoc.x = screenLoc.x + mouseLoc.x - event.clientX;
+                screenLoc.y = screenLoc.y + mouseLoc.y - event.clientY;
                 drawBoard();
             }
          });
