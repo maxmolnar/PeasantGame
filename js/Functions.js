@@ -75,6 +75,6 @@ module.exports = function() {
 	}
 }
 
-var getNextID = function(var map) {
+var getNextID = function(map) {
 
 }
