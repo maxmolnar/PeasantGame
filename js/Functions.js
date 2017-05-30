@@ -37,7 +37,9 @@ module.exports = function() {
 
 				//TODO: define stats
 				var id = getNextID(players);
+				var name = getName();
 				npcs.add({id:id,
+						name: name,
 						tile : i,
 						role : 'peasant',
 						strength : 4}, id);
@@ -122,4 +124,9 @@ var getNextID = function(map) {
 		i++;
 	}
 	return i; 
+}
+
+var getName = function() {
+
+	return 'Nick';
 }
