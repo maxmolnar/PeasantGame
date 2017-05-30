@@ -57,7 +57,7 @@ module.exports = function() {
 
 	//updates entire board state every 5 seconds
 	this.update = function() {
-		fs.readFile('/json/board.json', 'utf-8', data)
+		var data = fs.readFile('/json/board.json', 'utf-8')
 		var board = JSON.parse(data);
 		//loop through npc list
 		var arr = npcs.toArray();
@@ -87,8 +87,7 @@ module.exports = function() {
 
 	//returns board status as array (?)
 	this.getBoard = function() {
-		fs.readFile('/json/board.json', 'utf-8', data)
-		return JSON.parse(data);
+		return JSON.parse(fs.readFile('/json/board.json', 'utf-8'));
 	}
 }
 
