@@ -62,7 +62,7 @@ module.exports = function() {
 
 		fs.readFile('json/board.json', (err, data) => {
  		if (err) throw err;
-  			console.log(data);
+  			console.log('returned attempt 2: ' + data);
 		});
 
 		var board = JSON.parse(data);
