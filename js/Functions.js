@@ -53,7 +53,7 @@ module.exports = function() {
 	this.update = function() {
 		console.log("updating");
 		//loop through npc list; assign actions
-
+		
 		//update interactions first
 		 
 		//update moves last
