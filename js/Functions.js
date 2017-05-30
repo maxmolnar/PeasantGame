@@ -16,7 +16,7 @@ board = [];
 npcs = new SortedArrayMap();
 
 //player map, sorted by id
-var players = new SortedArratyMap();
+var players = new SortedArrayMap();
 
 //Array of interactions and moves to be updated
 var interactions = new List();
