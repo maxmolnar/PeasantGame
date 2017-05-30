@@ -40,7 +40,7 @@ if (cluster.isMaster) {
 
   io.on('connection', function(socket){
     console.log('a user connected');
-    playerSpawn(); 
+    //playerSpawn(); 
   });
 
   http.listen(3000);

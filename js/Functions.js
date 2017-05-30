@@ -50,7 +50,7 @@ module.exports = function() {
 			board[i] = {terrain: ter,
 						standing: stand};
 		}
-        
+		console.log(board);        
 	}
 
 	this.update = function() {
