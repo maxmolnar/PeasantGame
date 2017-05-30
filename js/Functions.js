@@ -3,8 +3,9 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 //var io = require('socket.io')(http);
-var List = require("collections/list");
-var SortedArrayMap = require("collections/sorted-array-map");
+var List = require('collections/list');
+var SortedArrayMap = require('collections/sorted-array-map');
+var fs = require('fs');
 
 //Starting a collection of config vars here, theoretically they'll get moved to their own file soon
 var boardSize = 50;
