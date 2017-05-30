@@ -47,28 +47,3 @@ if (cluster.isMaster) {
   http.listen(3000);
   console.log(`Worker ${process.pid} listening on *:3000`);
 }
-
-/*
-//IDK if this works or not
-init();
-//sets update to run every 5 seconds
-setInterval(update, 5000);
-console.log('Master updating board');
-
-app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/Index.html');
-});
-
-app.use(express.static(__dirname + '/js'));
-
-io.on('connection', function(socket){
-  console.log('a user connected');
-  playerSpawn();
-    
-});
-
-//http.listen(3000, function () {
-//    console.log('listening on *:3000');
-//});
-*/
-
