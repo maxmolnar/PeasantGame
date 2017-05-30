@@ -10,6 +10,9 @@ var fs = require('fs');
 //Starting a collection of config vars here, theoretically they'll get moved to their own file soon
 var boardSize = 50;
 
+//board status, updated every five seconds
+var board = [];
+
 //npc map, sorted by id
 npcs = new SortedArrayMap();
 
@@ -57,9 +60,7 @@ module.exports = function() {
 	//updates entire board state every 5 seconds
 	this.update = function() {
 		console.log('updating');
-		var data = fs.readFileSync('json/board.json', 'utf-8');
-
-		var board = JSON.parse(data);
+		
 		//loop through npc list
 		var arr = npcs.toArray();
 		for (var i = 0; i < arr.length; i++) {
@@ -70,13 +71,15 @@ module.exports = function() {
 		//update interactions first
 		 
 		//update moves last
+
+		var data = fs.readFileSync('json/board.json', 'utf-8');
+		board = JSON.parse(data);
         io.emit('board state',board);
 	}
 
 	//call this when player first connects to game server
 	this.playerSpawn = function() {
-		var data = fs.readFileSync('json/board.json', 'utf-8');
-		var board = JSON.parse(data);
+		//draws board immediately on connection
 		io.emit('board state',board);
 
 		var id = getNextID(players);
@@ -91,18 +94,11 @@ module.exports = function() {
 
 	}
 
-	//returns board status as array (?)
-	this.getBoard = function() {
-		return JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
-	}
-
 	//adds turn object to proper list
 	this.commitTurn = function(id, tile) {
 		turn = {id: id,
 				tile: tile};
-		var data = fs.readFileSync('json/board.json', 'utf-8');
-		var board = JSON.parse(data);
-
+				
 		//move
 		if (board[tile].standing == 'empty') {
 			//list = move list
