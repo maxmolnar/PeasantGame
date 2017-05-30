@@ -57,12 +57,12 @@ module.exports = function() {
 
 	//updates entire board state every 5 seconds
 	this.update = function() {
-		var data = fs.readFile('json/board.json', 'utf-8')
+		var data = fs.readFileSync('json/board.json', 'utf-8');
 		console.log('returned json: ' + data);
 
 		fs.readFile('json/board.json', (err, data) => {
  		if (err) throw err;
-  			console.log('returned attempt 2: ' + data);
+  			console.log('success: ' + data);
 		});
 
 		var board = JSON.parse(data);
