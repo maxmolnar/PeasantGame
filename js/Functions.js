@@ -4,6 +4,7 @@ var app = express();
 var http = require('http').Server(app);
 //var io = require('socket.io')(http);
 var List = require("collections/list");
+var SortedArrayMap = require("collections/sorted-array-map");
 
 //Starting a collection of config vars here, theoretically they'll get moved to their own file soon
 var boardSize = 50;
@@ -11,11 +12,11 @@ var boardSize = 50;
 //Array of tile objects - holds game state
 board = [];
 
-//List of current npcs - might change to heap of IDs
-npcs = new List();
+//npc map, sorted by id
+npcs = new SortedArrayMap();
 
-//List of current players - might change to heap of IDs
-var players = new List();
+//player map, sorted by id
+var players = new SortedArratyMap();
 
 //Array of interactions and moves to be updated
 var interactions = new List();
@@ -36,9 +37,10 @@ module.exports = function() {
 				stand = 'peasant';
 
 				//TODO: define stats
-				npcs.push({tile : i,
+				npcs.add({id:i,
+						tile : i,
 						role : 'peasant',
-						strength : 4});
+						strength : 4}, i);
 			} else if (i === 25) {
 				stand = 'base';
 			} else if (i === 4 || i === 6 || i === 43) {
@@ -65,9 +67,10 @@ module.exports = function() {
 		console.log('called');
 		io.emit('board state',board);
 
-		players.push({tile : 4,
-					role : 'peasant',
-					strength : 4});
+		players.add({id:i,
+						tile : i,
+						role : 'peasant',
+						strength : 4}, i);
 		board[4].standing = 'peasant';
 	}
 }
