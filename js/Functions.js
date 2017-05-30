@@ -14,7 +14,7 @@ board = [];
 //List of current npcs - might change to heap of IDs
 npcs = new List();
 
-//List of current players - might change to hea of IDs
+//List of current players - might change to heap of IDs
 var players = new List();
 
 //Array of interactions and moves to be updated
@@ -70,4 +70,8 @@ module.exports = function() {
 					strength : 4});
 		board[4].standing = 'peasant';
 	}
+}
+
+var getID = function(List list) {
+
 }
