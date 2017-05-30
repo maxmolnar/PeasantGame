@@ -68,9 +68,9 @@ module.exports = function() {
 		io.emit('board state',board);
 
 		players.add({id:1,
-						tile : i,
+						tile : 1,
 						role : 'peasant',
-						strength : 4}, i);
+						strength : 4}, 1);
 		board[4].standing = 'peasant';
 	}
 }
