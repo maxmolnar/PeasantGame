@@ -88,12 +88,31 @@ module.exports = function() {
 
 		var json = JSON.stringify(board);
 		fs.writeFile('json/board.json', json, 'utf8');
-		
+
 	}
 
 	//returns board status as array (?)
 	this.getBoard = function() {
 		return JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
+	}
+
+	//adds turn object to proper list
+	this.commitTurn = function(id, tile) {
+		turn = {id: id,
+				tile: tile};
+		var data = fs.readFileSync('json/board.json', 'utf-8');
+		var board = JSON.parse(data);
+
+		//move
+		if (board[tile].standing == 'empty') {
+			//list = move list
+		}
+
+		//interaction
+		else {
+			//list = interaction list
+		}
+		//list.push(turn)
 	}
 }
 
