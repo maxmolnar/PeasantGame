@@ -75,6 +75,6 @@ module.exports = function() {
 	}
 }
 
-var getNextID = function(SortedArrayMap() map) {
+var getNextID = function(var map) {
 
 }
