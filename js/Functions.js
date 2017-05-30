@@ -3,19 +3,18 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 //var io = require('socket.io')(http);
-var List = require("collections/list");
+var List = require('collections/list');
+var SortedArrayMap = require('collections/sorted-array-map');
+var fs = require('fs');
 
 //Starting a collection of config vars here, theoretically they'll get moved to their own file soon
 var boardSize = 50;
 
-//Array of tile objects - holds game state
-board = [];
+//npc map, sorted by id
+npcs = new SortedArrayMap();
 
-//List of current npcs - might change to heap of IDs
-npcs = new List();
-
-//List of current players - might change to hea of IDs
-var players = new List();
+//player map, sorted by id
+var players = new SortedArrayMap();
 
 //Array of interactions and moves to be updated
 var interactions = new List();
@@ -26,6 +25,7 @@ module.exports = function() {
 	//initializes game state at server start up
 	this.init = function() {
 
+		var board = [];
 		//Hard coded values for now
 		for (var i = 0; i < boardSize; i++) {
 			var ter = 'grass';
@@ -36,9 +36,13 @@ module.exports = function() {
 				stand = 'peasant';
 
 				//TODO: define stats
-				npcs.push({tile : i,
+				var id = getNextID(players);
+				var name = getName();
+				npcs.add({id:id,
+						name: name,
+						tile : i,
 						role : 'peasant',
-						strength : 4});
+						strength : 4}, id);
 			} else if (i === 25) {
 				stand = 'base';
 			} else if (i === 4 || i === 6 || i === 43) {
@@ -47,27 +51,86 @@ module.exports = function() {
 			board[i] = {terrain: ter,
 						standing: stand};
 		}
-        
+
+		var json = JSON.stringify(board);
+		fs.writeFile('json/board.json', json, 'utf8');        
 	}
 
+	//updates entire board state every 5 seconds
 	this.update = function() {
-		console.log("updating");
-		//loop through npc list; assign actions
+
+		console.log('updating');
+		var data = fs.readFileSync('json/board.json', 'utf-8');
+		var board = JSON.parse(data);
 		
+		//loop through npc list
+		var arr = npcs.toArray();
+		for (var i = 0; i < arr.length; i++) {
+			//assign actions
+
+		}
+
 		//update interactions first
 		 
 		//update moves last
-        io.emit('board state',board);
+
+		io.emit('board state',board);
 	}
 
 	//call this when player first connects to game server
 	this.playerSpawn = function() {
-		console.log('called');
+		//draws board immediately on connection
+		var data = fs.readFileSync('json/board.json', 'utf-8');
+		var board = JSON.parse(data);
 		io.emit('board state',board);
 
-		players.push({tile : 4,
+		var id = getNextID(players);
+		var name = getName();
+
+		players.add({id:id,
+					name: name,
+					tile : 1,
 					role : 'peasant',
-					strength : 4});
+					strength : 4}, id);
 		board[4].standing = 'peasant';
+
+		var json = JSON.stringify(board);
+		fs.writeFile('json/board.json', json, 'utf8');
+
 	}
+
+	//adds turn object to proper list
+	this.commitTurn = function(id, tile) {
+		turn = {id: id,
+				tile: tile};
+
+		var data = fs.readFileSync('json/board.json', 'utf-8');
+		var board = JSON.parse(data);
+		
+		//move
+		if (board[tile].standing == 'empty') {
+			//list = move list
+		}
+
+		//interaction
+		else {
+			//list = interaction list
+		}
+		//list.push(turn)
+	}
+}
+
+//returns lowest available id for given map
+var getNextID = function(map) {
+	var arr = map.toArray();
+	var i = 0; 
+	while (arr[i] === i) {
+		i++;
+	}
+	return i; 
+}
+
+var getName = function() {
+
+	return 'Nick';
 }

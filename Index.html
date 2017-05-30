@@ -8,6 +8,7 @@
         var boardState;
         var socket = io();
         var mouseDown = false;
+        
         var mouseLoc = {x: 0, y: 0};
         //Aliases
         var Container = PIXI.Container,
@@ -25,20 +26,22 @@
         var tileHeight = 103,
             tileWidth = 88;
         
+        //this is shitty way to do this. need better way
         var tiles = [];
         var peasants = [];
+        var trees = [];
         
         var screenLoc = {x: 0, y: 0 };
+        var screenLok = {x: 0, y: 0 };
         //Use Pixi's built-in `loader` module to load an image
         loader
             .add("images/ground.png")
+            .add("images/tree.png")
             .add("images/peasant.png")
             .load(setup);
         //This `setup` function will run when the image has loaded
         function setup() {
-            
-            
-            
+              
         }
         
         socket.on('board state', function(board){
@@ -64,7 +67,7 @@
                     tiles[tileNmb].x = i * tileWidth + ((j % 2) * tileWidth / 2 - screenLoc.x);
                     tiles[tileNmb].y = j * (tileHeight - (Math.sin(Math.PI/6) * (tileHeight / 2))) - screenLoc.y;
                     stage.addChild(tiles[tileNmb]);   
-                    if(boardState[tileNmb].standing != 'empty'){
+                    if(boardState[tileNmb].standing == 'peasant'){
                         if(typeof peasants[tileNmb] === "undefined"){
                             console.log('drawing peasant'); 
                             peasants[tileNmb] = new Sprite(resources["images/peasant.png"].texture);
@@ -72,17 +75,40 @@
                         peasants[tileNmb].x = tiles[tileNmb].x + tileWidth / 2 - peasants[tileNmb].width / 2;
                         peasants[tileNmb].y = tiles[tileNmb].y + tileHeight / 2 - peasants[tileNmb].height / 2; 
                         stage.addChild(peasants[tileNmb]);
+                    }else if(boardState[tileNmb].standing == 'tree'){
+                        if(typeof trees[tileNmb] === "undefined"){
+                            console.log('drawing trees');
+                            trees[tileNmb] = [];
+                            var yAccumulation = 0;
+                            var i = 0;
+                            while(yAccumulation < tileHeight){
+                                trees[tileNmb][i] = new Sprite(resources["images/tree.png"].texture);
+                                yAccumulation += randomInt(0, 5);
+                                trees[tileNmb][i].yOffSet = yAccumulation;
+                                trees[tileNmb][i].xOffSet = randomInt(0, tileWidth - trees[tileNmb][i].width);
+                                trees[tileNmb][i].x = tiles[tileNmb].x + trees[tileNmb][i].xOffSet;
+                                trees[tileNmb][i].y = tiles[tileNmb].y + trees[tileNmb][i].yOffSet - trees[tileNmb][i].height;
+                                stage.addChild(trees[tileNmb][i]);
+                                i++; 
+                            }
+                        }else{
+                            for(var i = 0; i < trees[tileNmb].length; i++){
+                                trees[tileNmb][i].x = tiles[tileNmb].x + trees[tileNmb][i].xOffSet;
+                                trees[tileNmb][i].y = tiles[tileNmb].y + trees[tileNmb][i].yOffSet - trees[tileNmb][i].height;
+                                stage.addChild(trees[tileNmb][i]);
+                            }
+                        }
                     }       
                 }
             }
             renderer.render(stage);
         }
-        
+            
             
         window.addEventListener('mousemove', function(event) {
             if(mouseDown){
-                screenLoc.x =  mouseLoc.x - event.clientX;
-                screenLoc.y =  mouseLoc.y - event.clientY;
+                screenLoc.x = screenLok.x + mouseLoc.x - event.clientX;
+                screenLoc.y = screenLok.y + mouseLoc.y - event.clientY;
                 drawBoard();
             }
          });
@@ -95,7 +121,13 @@
         
         window.addEventListener('mouseup', function(event) {
             mouseDown = false;
+            screenLok.x = screenLoc.x;
+            screenLok.y = screenLoc.y;
         });
+        
+        function randomInt(min, max){
+            return Math.floor(Math.random() * (max - min) + min) + 1;
+        }
 
     </script>
 </body>
