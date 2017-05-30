@@ -46,8 +46,6 @@
         
         socket.on('board state', function(board){
             boardState = board;
-            //boardState = getBoard();
-            console.log(boardState);
             drawBoard();
             console.log('updating board');
         });
