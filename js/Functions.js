@@ -50,6 +50,8 @@ module.exports = function() {
 			board[i] = {terrain: ter,
 						standing: stand};
 		}
+		var json = JSON.stringify(board);
+		fs.writeFile('myjsonfile.json', json, 'utf8');
 		console.log(board);        
 	}
 
