@@ -51,14 +51,12 @@ module.exports = function() {
 		}
 
 		var json = JSON.stringify(board);
-		fs.writeFile('json/board.json', json, 'utf8');
-		console.log(board);        
+		fs.writeFile('json/board.json', json, 'utf8');        
 	}
 
 	//updates entire board state every 5 seconds
 	this.update = function() {
 		var data = fs.readFileSync('json/board.json', 'utf-8');
-		console.log('returned json: ' + data);
 
 		var board = JSON.parse(data);
 		//loop through npc list
