@@ -60,11 +60,6 @@ module.exports = function() {
 		var data = fs.readFileSync('json/board.json', 'utf-8');
 		console.log('returned json: ' + data);
 
-		fs.readFile('json/board.json', (err, data) => {
- 		if (err) throw err;
-  			console.log('success: ' + data);
-		});
-
 		var board = JSON.parse(data);
 		//loop through npc list
 		var arr = npcs.toArray();
@@ -94,7 +89,7 @@ module.exports = function() {
 
 	//returns board status as array (?)
 	this.getBoard = function() {
-		return JSON.parse(fs.readFile('json/board.json', 'utf-8'));
+		return JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 	}
 }
 
