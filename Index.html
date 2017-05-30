@@ -79,18 +79,22 @@
                         if(typeof trees[tileNmb] === "undefined"){
                             console.log('drawing trees');
                             trees[tileNmb] = [];
-                            for(var i = 0; i < 20;i++){
+                            var yAccumulation = 0;
+                            var i = 0;
+                            while(yAccumulation < tileHeight){
                                 trees[tileNmb][i] = new Sprite(resources["images/tree.png"].texture);
-                                trees[tileNmb][i].xOffSet = randomInt(0, tileWidth);
-                                trees[tileNmb][i].yOffSet = randomInt(0, tileHeight);
+                                yAccumulation += randomInt(0, 5);
+                                trees[tileNmb][i].yOffSet = yAccumulation;
+                                trees[tileNmb][i].xOffSet = randomInt(0, tileWidth - trees[tileNmb][i].width);
                                 trees[tileNmb][i].x = tiles[tileNmb].x + trees[tileNmb][i].xOffSet;
-                                trees[tileNmb][i].y = tiles[tileNmb].y + trees[tileNmb][i].yOffSet;
+                                trees[tileNmb][i].y = tiles[tileNmb].y + trees[tileNmb][i].yOffSet - trees[tileNmb][i].height;
                                 stage.addChild(trees[tileNmb][i]);
+                                i++; 
                             }
                         }else{
-                            for(var i = 0; i < 20; i++){
+                            for(var i = 0; i < trees[tileNmb].length; i++){
                                 trees[tileNmb][i].x = tiles[tileNmb].x + trees[tileNmb][i].xOffSet;
-                                trees[tileNmb][i].y = tiles[tileNmb].y + trees[tileNmb][i].yOffSet;
+                                trees[tileNmb][i].y = tiles[tileNmb].y + trees[tileNmb][i].yOffSet - trees[tileNmb][i].height;
                                 stage.addChild(trees[tileNmb][i]);
                             }
                         }
