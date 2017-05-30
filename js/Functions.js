@@ -75,6 +75,8 @@ module.exports = function() {
 	//call this when player first connects to game server
 	this.playerSpawn = function() {
 		//draws board immediately on connection
+		var data = fs.readFileSync('json/board.json', 'utf-8');
+		var board = JSON.parse(data);
 		io.emit('board state',board);
 
 		var id = getNextID(players);
