@@ -12,7 +12,7 @@ init();
 setInterval(update, 5000);
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname + '/Index.html');
 });
 
 app.use(express.static(__dirname + '/js'));
