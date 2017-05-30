@@ -22,6 +22,7 @@ if (cluster.isMaster) {
   });
 
   //Initilize game board
+  console.log('init called');
   init();
 
   //sets update to run every 5 seconds
