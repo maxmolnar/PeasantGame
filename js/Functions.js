@@ -67,7 +67,7 @@ module.exports = function() {
 		console.log('called');
 		io.emit('board state',board);
 
-		players.add({id:i,
+		players.add({id:1,
 						tile : i,
 						role : 'peasant',
 						strength : 4}, i);
