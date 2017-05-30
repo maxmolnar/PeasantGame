@@ -66,16 +66,20 @@ module.exports = function() {
 	this.playerSpawn = function() {
 		console.log('called');
 		io.emit('board state',board);
-
-		players.add({id:1,
+		var id = getNextID(players);
+		players.add({id:id,
 						tile : 1,
 						role : 'peasant',
-						strength : 4}, 1);
+						strength : 4}, id);
 		board[4].standing = 'peasant';
 	}
 }
 
 var getNextID = function(map) {
 	var arr = map.toArray();
-	
+	int i = 0; 
+	while (arr[i] == i) {
+		i++;
+	}
+	return i; 
 }
