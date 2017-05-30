@@ -57,11 +57,11 @@ module.exports = function() {
 		console.log("updating");
 		//loop through npc list
 		var arr = npcs.toArray();
-		for (var i = 0; i < arr.length(); i++) {
+		for (var i = 0; i < arr.length; i++) {
 			//assign actions
 
 		}
-		
+
 		//update interactions first
 		 
 		//update moves last
