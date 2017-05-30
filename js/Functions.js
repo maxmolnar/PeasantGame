@@ -52,7 +52,7 @@ module.exports = function() {
 						standing: stand};
 		}
 		var json = JSON.stringify(board);
-		fs.writeFile('myjsonfile.json', json, 'utf8');
+		fs.writeFile('json/board.json', json, 'utf8');
 		console.log(board);        
 	}
 
