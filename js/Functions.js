@@ -96,7 +96,7 @@ module.exports = function() {
 var getNextID = function(map) {
 	var arr = map.toArray();
 	var i = 0; 
-	while (arr[i] == i) {
+	while (arr[i] === i) {
 		i++;
 	}
 	return i; 
