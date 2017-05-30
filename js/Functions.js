@@ -77,7 +77,7 @@ module.exports = function() {
 
 var getNextID = function(map) {
 	var arr = map.toArray();
-	int i = 0; 
+	var i = 0; 
 	while (arr[i] == i) {
 		i++;
 	}
