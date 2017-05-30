@@ -37,10 +37,11 @@ module.exports = function() {
 				stand = 'peasant';
 
 				//TODO: define stats
-				npcs.add({id:i,
+				var id = getNextID(players);
+				npcs.add({id:id,
 						tile : i,
 						role : 'peasant',
-						strength : 4}, i);
+						strength : 4}, id);
 			} else if (i === 25) {
 				stand = 'base';
 			} else if (i === 4 || i === 6 || i === 43) {
