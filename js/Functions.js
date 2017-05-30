@@ -77,6 +77,7 @@ module.exports = function() {
 						tile : 1,
 						role : 'peasant',
 						strength : 4}, id);
+		console.log(board);
 		board[4].standing = 'peasant';
 	}
 }
