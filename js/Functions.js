@@ -10,9 +10,6 @@ var fs = require('fs');
 //Starting a collection of config vars here, theoretically they'll get moved to their own file soon
 var boardSize = 50;
 
-//Array of tile objects - holds game state
-board = [];
-
 //npc map, sorted by id
 npcs = new SortedArrayMap();
 
@@ -28,6 +25,7 @@ module.exports = function() {
 	//initializes game state at server start up
 	this.init = function() {
 
+		var board = [];
 		//Hard coded values for now
 		for (var i = 0; i < boardSize; i++) {
 			var ter = 'grass';
@@ -85,12 +83,14 @@ module.exports = function() {
 		board[4].standing = 'peasant';
 	}
 
+	//returns board status as array (?)
 	this.getBoard = function() {
 		fs.readFile('/json/board.json', 'utf-8', data)
 		return JSON.parse(data);
 	}
 }
 
+//returns lowest available id for given map
 var getNextID = function(map) {
 	var arr = map.toArray();
 	var i = 0; 
