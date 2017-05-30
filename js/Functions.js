@@ -51,6 +51,7 @@ module.exports = function() {
 			board[i] = {terrain: ter,
 						standing: stand};
 		}
+
 		var json = JSON.stringify(board);
 		fs.writeFile('json/board.json', json, 'utf8');
 		console.log(board);        
@@ -82,6 +83,11 @@ module.exports = function() {
 						strength : 4}, id);
 		console.log(board);
 		board[4].standing = 'peasant';
+	}
+
+	this.getBoard = function() {
+		fs.readFile('/json/board.json', 'utf-8', data)
+		return JSON.parse(data);
 	}
 }
 
