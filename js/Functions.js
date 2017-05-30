@@ -76,5 +76,6 @@ module.exports = function() {
 }
 
 var getNextID = function(map) {
-
+	var arr = map.toArray();
+	
 }
