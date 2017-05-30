@@ -26,14 +26,17 @@
         var tileHeight = 103,
             tileWidth = 88;
         
+        //this is shitty way to do this. need better way
         var tiles = [];
         var peasants = [];
+        var trees = [];
         
         var screenLoc = {x: 0, y: 0 };
         var screenLok = {x: 0, y: 0 };
         //Use Pixi's built-in `loader` module to load an image
         loader
             .add("images/ground.png")
+            .add("images/tree.png")
             .add("images/peasant.png")
             .load(setup);
         //This `setup` function will run when the image has loaded
@@ -66,7 +69,7 @@
                     tiles[tileNmb].x = i * tileWidth + ((j % 2) * tileWidth / 2 - screenLoc.x);
                     tiles[tileNmb].y = j * (tileHeight - (Math.sin(Math.PI/6) * (tileHeight / 2))) - screenLoc.y;
                     stage.addChild(tiles[tileNmb]);   
-                    if(boardState[tileNmb].standing != 'empty'){
+                    if(boardState[tileNmb].standing == 'peasant'){
                         if(typeof peasants[tileNmb] === "undefined"){
                             console.log('drawing peasant'); 
                             peasants[tileNmb] = new Sprite(resources["images/peasant.png"].texture);
@@ -74,6 +77,25 @@
                         peasants[tileNmb].x = tiles[tileNmb].x + tileWidth / 2 - peasants[tileNmb].width / 2;
                         peasants[tileNmb].y = tiles[tileNmb].y + tileHeight / 2 - peasants[tileNmb].height / 2; 
                         stage.addChild(peasants[tileNmb]);
+                    }else if(boardState[tileNmb].standing == 'tree'){
+                        if(typeof trees[tileNmb] === "undefined"){
+                            console.log('drawing trees');
+                            trees[tileNmb] = [];
+                            for(var i = 0; i < 20;i++){
+                                trees[tileNmb][i] = new Sprite(resources["images/tree.png"].texture);
+                                trees[tileNmb][i].xOffSet = randomInt(0, tileWidth);
+                                trees[tileNmb][i].yOffSet = randomInt(0, tileHeight);
+                                trees[tileNmb][i].x = tiles[tileNmb].x + trees[tileNmb][i].xOffSet;
+                                trees[tileNmb][i].y = tiles[tileNmb].y + trees[tileNmb][i].yOffSet;
+                                stage.addChild(trees[tileNmb][i]);
+                            }
+                        }else{
+                            for(var i = 0; i < 20; i++){
+                                trees[tileNmb][i].x = tiles[tileNmb].x + trees[tileNmb][i].xOffSet;
+                                trees[tileNmb][i].y = tiles[tileNmb].y + trees[tileNmb][i].yOffSet;
+                                stage.addChild(trees[tileNmb][i]);
+                            }
+                        }
                     }       
                 }
             }
@@ -100,6 +122,10 @@
             screenLok.x = screenLoc.x;
             screenLok.y = screenLoc.y;
         });
+        
+        function randomInt(min, max){
+            return Math.floor(Math.random() * (max - min) + min) + 1;
+        }
 
     </script>
 </body>
