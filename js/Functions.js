@@ -84,10 +84,13 @@ module.exports = function() {
 		io.emit('board state',board);
 
 		var id = getNextID(players);
+		var name = getName();
+
 		players.add({id:id,
-						tile : 1,
-						role : 'peasant',
-						strength : 4}, id);
+					name: name,
+					tile : 1,
+					role : 'peasant',
+					strength : 4}, id);
 		board[4].standing = 'peasant';
 
 		var json = JSON.stringify(board);
