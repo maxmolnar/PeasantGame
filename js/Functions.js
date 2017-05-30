@@ -78,14 +78,17 @@ module.exports = function() {
 		var data = fs.readFileSync('json/board.json', 'utf-8');
 		var board = JSON.parse(data);
 		io.emit('board state',board);
-		
+
 		var id = getNextID(players);
 		players.add({id:id,
 						tile : 1,
 						role : 'peasant',
 						strength : 4}, id);
-		console.log(board);
 		board[4].standing = 'peasant';
+
+		var json = JSON.stringify(board);
+		fs.writeFile('json/board.json', json, 'utf8');
+		
 	}
 
 	//returns board status as array (?)
