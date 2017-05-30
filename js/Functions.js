@@ -10,9 +10,6 @@ var fs = require('fs');
 //Starting a collection of config vars here, theoretically they'll get moved to their own file soon
 var boardSize = 50;
 
-//board status, updated every five seconds
-var board = [];
-
 //npc map, sorted by id
 npcs = new SortedArrayMap();
 
@@ -72,9 +69,7 @@ module.exports = function() {
 		 
 		//update moves last
 
-		var data = fs.readFileSync('json/board.json', 'utf-8');
-		board = JSON.parse(data);
-        io.emit('board state',board);
+		io.emit('board state',board);
 	}
 
 	//call this when player first connects to game server
@@ -98,7 +93,10 @@ module.exports = function() {
 	this.commitTurn = function(id, tile) {
 		turn = {id: id,
 				tile: tile};
-				
+
+		var data = fs.readFileSync('json/board.json', 'utf-8');
+		var board = JSON.parse(data);
+		
 		//move
 		if (board[tile].standing == 'empty') {
 			//list = move list
