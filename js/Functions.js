@@ -57,6 +57,8 @@ module.exports = function() {
 	//updates entire board state every 5 seconds
 	this.update = function() {
 		console.log('updating');
+		var data = fs.readFileSync('json/board.json', 'utf-8');
+		var board = JSON.parse(data);
 		
 		//loop through npc list
 		var arr = npcs.toArray();
