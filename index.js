@@ -23,7 +23,6 @@ if (cluster.isMaster) {
   });
 
   //Initilize game board
-  console.log('init called');
   init();
 
   //sets update to run every 5 seconds
@@ -40,7 +39,6 @@ if (cluster.isMaster) {
   app.use(express.static(__dirname + '/js'));
 
   io.on('connection', function(socket){
-    console.log('a user connected');
     playerSpawn(); 
   });
 
