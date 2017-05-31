@@ -140,7 +140,7 @@ module.exports = function() {
 				tile: tile};
 
 		var data = fs.readFileSync('json/board.json', 'utf-8');
-		var board = JSON.parse('data: ' + data);
+		var board = JSON.parse(data);
 		
 		//move
 		if (board[tile].standing == 'empty') {
@@ -158,9 +158,7 @@ module.exports = function() {
 //returns lowest available id for given map
 var getNextID = function(type) {
 	var map = JSON.parse(fs.readFileSync('json/' + type + '.json', 'utf-8'));
-	var keys = map.keys();
-	console.log(map[0]);
-	console.log('map : ' + map.keys());
+	console.log('map : ' + JSON.stringify(map));
 
 	var i = 0; 
 	return i; 
