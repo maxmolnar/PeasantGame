@@ -79,21 +79,21 @@
                         if(typeof trees[tileNmb] === "undefined"){
                             console.log('drawing trees');
                             trees[tileNmb] = [];
-                            var yAccumulation = 0;
+                            var yAccumulation = tileHeight / 4;
                             var i = 0;
-                            while(yAccumulation < tileHeight){
+                            while(yAccumulation < tileHeight - tileHeight / 4){
                                 trees[tileNmb][i] = new Sprite(resources["images/tree.png"].texture);
                                 yAccumulation += randomInt(0, 5);
                                 trees[tileNmb][i].yOffSet = yAccumulation;
-                                trees[tileNmb][i].xOffSet = randomInt(0, tileWidth - trees[tileNmb][i].width);
-                                trees[tileNmb][i].x = tiles[tileNmb].x + trees[tileNmb][i].xOffSet;
+                                trees[tileNmb][i].xOffSet = randomInt(trees[tileNmb][i].width, tileWidth - trees[tileNmb][i].width / 2);
+                                trees[tileNmb][i].x = tiles[tileNmb].x + trees[tileNmb][i].xOffSet - trees[tileNmb][i].width;
                                 trees[tileNmb][i].y = tiles[tileNmb].y + trees[tileNmb][i].yOffSet - trees[tileNmb][i].height;
                                 stage.addChild(trees[tileNmb][i]);
                                 i++; 
                             }
                         }else{
                             for(var i = 0; i < trees[tileNmb].length; i++){
-                                trees[tileNmb][i].x = tiles[tileNmb].x + trees[tileNmb][i].xOffSet;
+                                trees[tileNmb][i].x = tiles[tileNmb].x + trees[tileNmb][i].xOffSet- trees[tileNmb][i].width;
                                 trees[tileNmb][i].y = tiles[tileNmb].y + trees[tileNmb][i].yOffSet - trees[tileNmb][i].height;
                                 stage.addChild(trees[tileNmb][i]);
                             }
