@@ -94,6 +94,7 @@ module.exports = function() {
 					strength : 4}, id);
 		board[4].standing = 'peasant';
 
+		//this may not overwrite completely if new board value has a smaller length
 		var json = JSON.stringify(board);
 		fs.writeFile('json/board.json', json, 'utf8');
 
@@ -131,6 +132,7 @@ var getNextID = function(map) {
 }
 
 var getName = function() {
-
+	var data = fs.readFileSync('json/names.txt', 'utf-8');
+	console.log(data);
 	return 'Nick';
 }
