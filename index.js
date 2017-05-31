@@ -25,7 +25,7 @@ if (cluster.isMaster) {
 
   //sets update to run every 5 seconds
   setInterval(update, 5000);
-  console.log('Master updating board');
+  console.log('Master updating board\n');
 
 } else {
   //Workers handle all communication
