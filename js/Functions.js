@@ -158,6 +158,8 @@ module.exports = function() {
 //returns lowest available id for given map
 var getNextID = function(type) {
 	var map = JSON.parse(fs.readFileSync('json/' + type + '.json', 'utf-8'));
+	var keys = map.keys();
+	console.log(map[0]);
 	console.log('map : ' + map.keys());
 
 	var i = 0; 
