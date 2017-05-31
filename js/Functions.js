@@ -130,7 +130,7 @@ module.exports = function() {
 		var json = JSON.stringify(board);
 		fs.writeFile('json/board.json', json, 'utf8');
 
-		fs.writeFile('json/players.json', json)
+		fs.writeFile('json/players.json', players)
 
 	}
 
