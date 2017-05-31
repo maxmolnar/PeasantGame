@@ -7,8 +7,6 @@ var List = require("collections/list");
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 
-//Are not you at work? 
-
 if (cluster.isMaster) {
 	//master handles all calculations
   console.log(`Master ${process.pid} is running`);
