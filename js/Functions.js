@@ -11,10 +11,10 @@ var fs = require('fs');
 var boardSize = 50;
 
 //npc map, sorted by id
-npcs = new SortedArrayMap();
+//npcs = new SortedArrayMap();
 
 //player map, sorted by id
-//var players = new SortedArrayMap();
+var players = new SortedArrayMap();
 
 //Array of interactions and moves to be updated
 var interactions = new List();
@@ -96,7 +96,7 @@ module.exports = function() {
 
 		json = JSON.stringify(npcs);
 		fs.writeFile('json/npcs.json', json, 'utf-8');
-		
+
 		io.emit('board state',board);
 	}
 
