@@ -11,7 +11,7 @@ var fs = require('fs');
 var boardSize = 50;
 
 //player map, sorted by id
-var players = new SortedArrayMap();
+//var players = new SortedArrayMap();
 
 //Array of interactions and moves to be updated
 var interactions = new List();
@@ -103,7 +103,7 @@ module.exports = function() {
 		var board = JSON.parse(data);
 		io.emit('board state',board);
 
-		var id = getNextID(players);
+		var id = getNextID('players');
 		var name = getName();
 
 		players.add({id : id,
@@ -151,7 +151,7 @@ module.exports = function() {
 var getNextID = function(type) {
 	var data = fs.readFileSync('json/' + type + '.json', 'utf-8');
 	console.log(data);
-	
+
 	var i = 0; 
 	while (arr[i] === i) {
 		console.log(arr[i] + '===' + i);
