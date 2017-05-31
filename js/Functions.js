@@ -14,7 +14,7 @@ var boardSize = 50;
 npcs = new SortedArrayMap();
 
 //player map, sorted by id
-var players = new SortedArrayMap();
+//var players = new SortedArrayMap();
 
 //Array of interactions and moves to be updated
 var interactions = new List();
@@ -27,6 +27,7 @@ module.exports = function() {
 
 		console.log("Initializing board state");
 		var board = [];
+		var npcs = new SortedArrayMap();
 		//Hard coded values for now
 		for (var i = 0; i < boardSize; i++) {
 			var ter = 'grass';
@@ -61,8 +62,10 @@ module.exports = function() {
 						standing: stand};
 		}
 
-		var json = JSON.stringify(board);
-		fs.writeFile('json/board.json', json, 'utf8');        
+		var boardJSON = JSON.stringify(board);
+		var npcsJSON = JSON.stringify(npcs);
+		fs.writeFile('json/board.json', boardJSON, 'utf8');   
+		fs.writeFile('json/npcs.json', npcsJSON, 'utf-8');     
 	}
 
 	//updates entire board state every 5 seconds
@@ -71,6 +74,9 @@ module.exports = function() {
 		console.log('Calculating Update');
 		var data = fs.readFileSync('json/board.json', 'utf-8');
 		var board = JSON.parse(data);
+
+		data = fs.readFileSync('json/npcs.json', 'utf-8');
+		var npcs = JSON.parse(data);
 		
 		//loop through npc list
 		var arr = npcs.toArray();
@@ -87,6 +93,10 @@ module.exports = function() {
 		//this may not overwrite completely if new board value has a smaller length
 		var json = JSON.stringify(board);
 		fs.writeFile('json/board.json', json, 'utf8');
+
+		json = JSON.stringify(npcs);
+		fs.writeFile('json/npcs.json', json, 'utf-8');
+		
 		io.emit('board state',board);
 	}
 
