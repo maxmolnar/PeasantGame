@@ -103,6 +103,8 @@ module.exports = function() {
 		var board = JSON.parse(data);
 		io.emit('board state',board);
 
+		var players = JSON.parse(fs.readFileSync('json/players.json', 'utf-8'));
+
 		var id = getNextID('players');
 		var name = getName();
 
@@ -123,6 +125,8 @@ module.exports = function() {
 		//this may not overwrite completely if new board value has a smaller length
 		var json = JSON.stringify(board);
 		fs.writeFile('json/board.json', json, 'utf8');
+
+		fs.writeFile('json/players.json', json)
 
 	}
 
@@ -154,7 +158,9 @@ var getNextID = function(type) {
 
 	if (data == '') {
 		console.log("first");
+		return 0;
 	}
+
 	var i = 0; 
 	while (arr[i] === i) {
 		console.log(arr[i] + '===' + i);
