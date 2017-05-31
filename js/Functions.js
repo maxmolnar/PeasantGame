@@ -66,6 +66,7 @@ module.exports = function() {
 		var boardJSON = JSON.stringify(board);
 		//var npcsJSON = npcs.toObject();
 		var npcsJSON = JSON.stringify(npcs);
+		console.log('stringified: ' + npcsJSON);
 		fs.writeFile('json/board.json', boardJSON, 'utf8');   
 		fs.writeFile('json/npcs.json', npcs.toObject(), 'utf-8');     
 	}
