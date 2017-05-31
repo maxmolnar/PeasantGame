@@ -160,6 +160,7 @@ var getNextID = function(type) {
 	var map = JSON.parse(fs.readFileSync('json/' + type + '.json', 'utf-8'));
 	console.log('map : ' + JSON.stringify(map));
 
+	var i = 0;
 	for (var prop in map) {
    		if (!map.hasOwnProperty(prop)) {
    		     //The current property is not a direct property of p
@@ -167,10 +168,8 @@ var getNextID = function(type) {
     	}
    		//Do your logic with the property here
    		console.log(prop);
+   		i++;
 }
-
-
-	var i = 0; 
 	return i; 
 }
 
