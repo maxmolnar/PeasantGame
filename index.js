@@ -39,6 +39,7 @@ if (cluster.isMaster) {
   app.use(express.static(__dirname + '/js'));
 
   io.on('connection', function(socket){
+    console.log(socket.id);
     playerSpawn(); 
   });
 
