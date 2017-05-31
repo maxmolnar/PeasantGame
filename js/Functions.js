@@ -134,6 +134,6 @@ var getNextID = function(map) {
 var getName = function() {
 	var data = fs.readFileSync('json/names.txt', 'utf-8');
 	var names = data.split('\n');
-	console.log(names);
-	return 'Nick';
+	var name = names[Math.floor(Math.random() * names.length)]
+	return name;
 }
