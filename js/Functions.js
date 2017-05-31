@@ -38,11 +38,19 @@ module.exports = function() {
 				//TODO: define stats
 				var id = getNextID(players);
 				var name = getName();
-				npcs.add({id:id,
+				npcs.add({id : id,
 						name: name,
-						tile : i,
+						tile : 1,
 						role : 'peasant',
-						strength : 4}, id);
+						stats : {strength : 4,
+							health : 5,
+							maxHealth : 5,
+							faith : 0,
+							luck : 4},
+						equipped : {},
+						inventory : {}
+						}, id);
+
 			} else if (i === 25) {
 				stand = 'base';
 			} else if (i === 4 || i === 6 || i === 43) {
@@ -74,6 +82,10 @@ module.exports = function() {
 		 
 		//update moves last
 
+
+		//this may not overwrite completely if new board value has a smaller length
+		var json = JSON.stringify(board);
+		fs.writeFile('json/board.json', json, 'utf8');
 		io.emit('board state',board);
 	}
 
@@ -87,11 +99,18 @@ module.exports = function() {
 		var id = getNextID(players);
 		var name = getName();
 
-		players.add({id:id,
+		players.add({id : id,
 					name: name,
 					tile : 1,
 					role : 'peasant',
-					strength : 4}, id);
+					stats : {strength : 4,
+							health : 5,
+							maxHealth : 5,
+							faith : 0,
+							luck : 4},
+					equipped : {},
+					inventory : {}
+					}, id);
 		board[4].standing = 'peasant';
 
 		//this may not overwrite completely if new board value has a smaller length
@@ -131,6 +150,7 @@ var getNextID = function(map) {
 	return i; 
 }
 
+//returns random name from names.txt
 var getName = function() {
 	var data = fs.readFileSync('json/names.txt', 'utf-8');
 	var names = data.split('\n');
