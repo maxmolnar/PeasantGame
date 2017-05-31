@@ -159,7 +159,6 @@ module.exports = function() {
 //actually just returns nth number 
 var getNextID = function(type) {
 	var map = JSON.parse(fs.readFileSync('json/' + type + '.json', 'utf-8'));
-	console.log('map : ' + JSON.stringify(map));
 
 	var i = 0;
 	for (var prop in map) {
@@ -168,7 +167,7 @@ var getNextID = function(type) {
     	}
    		i++;
 	}
-	
+
 	return i; 
 }
 
