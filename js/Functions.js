@@ -61,9 +61,6 @@ module.exports = function() {
 			board[i] = {terrain: ter,
 						standing: stand};
 		}
-
-		console.log(npcs);
-		console.log(npcs.toJSON());
 		console.log(npcs.toObject());
 
 		var boardJSON = JSON.stringify(board);
