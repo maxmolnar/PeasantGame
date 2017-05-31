@@ -30,6 +30,7 @@
         var tiles = [];
         var peasants = [];
         var trees = [];
+        var bases = [];
         
         var screenLoc = {x: 0, y: 0 };
         var screenLok = {x: 0, y: 0 };
@@ -38,6 +39,7 @@
             .add("images/ground.png")
             .add("images/tree.png")
             .add("images/peasant.png")
+            .add("images/base.png")
             .load(setup);
         //This `setup` function will run when the image has loaded
         function setup() {
@@ -98,7 +100,15 @@
                                 stage.addChild(trees[tileNmb][i]);
                             }
                         }
-                    }       
+                    }else if(boardState[tileNmb].standing == 'base'){
+                        if(typeof bases[tileNmb] === "undefined"){
+                            console.log('drawing base'); 
+                            bases[tileNmb] = new Sprite(resources["images/base.png"].texture);
+                        }
+                        bases[tileNmb].x = tiles[tileNmb].x + tileWidth / 2 - bases[tileNmb].width / 2;
+                        bases[tileNmb].y = tiles[tileNmb].y + tileHeight / 2 - bases[tileNmb].height / 2; 
+                        stage.addChild(bases[tileNmb]);
+                    }
                 }
             }
             renderer.render(stage);
