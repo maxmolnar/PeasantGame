@@ -63,7 +63,6 @@ module.exports = function() {
 						standing: stand};
 		}
 
-		fs.closeSync(fs.openSync('json/players.json', 'w'));
 		fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');   
 		fs.writeFile('json/npcs.json', JSON.stringify(npcs), 'utf-8');     
