@@ -133,6 +133,7 @@ var getNextID = function(map) {
 
 var getName = function() {
 	var data = fs.readFileSync('json/names.txt', 'utf-8');
-	console.log(data);
+	var names = JSON.parse(data);
+	console.log(names);
 	return 'Nick';
 }
