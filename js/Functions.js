@@ -64,8 +64,10 @@ module.exports = function() {
 		}
 
 		var boardJSON = JSON.stringify(board);
+		var npcsJSON = npcs.toJSON();
+		console.log(npcsJSON);
 		fs.writeFile('json/board.json', boardJSON, 'utf8');   
-		fs.writeFile('json/npcs.json', npcs.toJSON(), 'utf-8');     
+		fs.writeFile('json/npcs.json', npcsJSON, 'utf-8');     
 	}
 
 	//updates entire board state every 5 seconds
