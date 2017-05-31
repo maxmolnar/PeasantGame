@@ -152,6 +152,9 @@ var getNextID = function(type) {
 	var data = fs.readFileSync('json/' + type + '.json', 'utf-8');
 	console.log(data);
 
+	if (data == '') {
+		console.log("first");
+	}
 	var i = 0; 
 	while (arr[i] === i) {
 		console.log(arr[i] + '===' + i);
