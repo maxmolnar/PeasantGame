@@ -38,7 +38,7 @@ module.exports = function() {
 				stand = 'peasant';
 
 				//TODO: define stats
-				var id = getNextID(players);
+				var id = 0;
 				var name = getName();
 				npcs.add({id : id,
 						name: name,
@@ -51,7 +51,7 @@ module.exports = function() {
 							luck : 4},
 						equipped : {},
 						inventory : {}
-						}, id);
+						}, id++);
 
 				console.log(npcs.toJSON());
 			} else if (i === 25) {
