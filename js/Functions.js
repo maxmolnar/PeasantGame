@@ -10,9 +10,6 @@ var fs = require('fs');
 //Starting a collection of config vars here, theoretically they'll get moved to their own file soon
 var boardSize = 50;
 
-//npc map, sorted by id
-//npcs = new SortedArrayMap();
-
 //player map, sorted by id
 var players = new SortedArrayMap();
 
@@ -100,7 +97,7 @@ module.exports = function() {
 	}
 
 	//call this when player first connects to game server
-	this.playerSpawn = function() {
+	this.playerSpawn = function(clientID) {
 		//draws board immediately on connection
 		var data = fs.readFileSync('json/board.json', 'utf-8');
 		var board = JSON.parse(data);

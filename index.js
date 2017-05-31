@@ -38,7 +38,7 @@ if (cluster.isMaster) {
 
   io.on('connection', function(socket){
     console.log('client: ' + socket.id + ' connected');
-    playerSpawn(); 
+    playerSpawn(socket.id); 
   });
 
   http.listen(3000);
