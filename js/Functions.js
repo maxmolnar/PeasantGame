@@ -61,14 +61,9 @@ module.exports = function() {
 			board[i] = {terrain: ter,
 						standing: stand};
 		}
-		console.log(npcs.toObject());
 
-		var boardJSON = JSON.stringify(board);
-		//var npcsJSON = npcs.toObject();
-		var npcsJSON = JSON.stringify(npcs);
-		console.log('stringified: ' + npcsJSON);
-		fs.writeFile('json/board.json', boardJSON, 'utf8');   
-		fs.writeFile('json/npcs.json', npcs, 'utf-8');     
+		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');   
+		fs.writeFile('json/npcs.json', JSON.stringify(npcs), 'utf-8');     
 	}
 
 	//updates entire board state every 5 seconds
