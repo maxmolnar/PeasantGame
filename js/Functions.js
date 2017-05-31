@@ -141,7 +141,7 @@ module.exports = function() {
 				tile: tile};
 
 		var data = fs.readFileSync('json/board.json', 'utf-8');
-		var board = JSON.parse(data);
+		var board = JSON.parse('data: ' + data);
 		
 		//move
 		if (board[tile].standing == 'empty') {
