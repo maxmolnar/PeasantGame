@@ -53,7 +53,7 @@ module.exports = function() {
 						inventory : {}
 						}, id);
 
-				console.log(npcs.toJSON());
+				console.log('1: ' + npcs.toJSON());
 				id++;
 			} else if (i === 25) {
 				stand = 'base';
@@ -66,7 +66,7 @@ module.exports = function() {
 
 		var boardJSON = JSON.stringify(board);
 		var npcsJSON = npcs.toObject();
-		console.log(npcsJSON);
+		console.log('2: ' + npcsJSON);
 		fs.writeFile('json/board.json', boardJSON, 'utf8');   
 		fs.writeFile('json/npcs.json', npcsJSON, 'utf-8');     
 	}
