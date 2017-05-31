@@ -52,8 +52,6 @@ module.exports = function() {
 						equipped : {},
 						inventory : {}
 						}, id);
-
-				console.log('1: ' + npcs.toJSON());
 				id++;
 			} else if (i === 25) {
 				stand = 'base';
@@ -64,9 +62,13 @@ module.exports = function() {
 						standing: stand};
 		}
 
+		console.log(npcs);
+		console.log(npcs.toArray());
+		console.log(npcs.toJSON());
+		console.log(npcs.toObject());
+		
 		var boardJSON = JSON.stringify(board);
 		var npcsJSON = npcs.toObject();
-		console.log('2: ' + npcsJSON);
 		fs.writeFile('json/board.json', boardJSON, 'utf8');   
 		fs.writeFile('json/npcs.json', npcsJSON, 'utf-8');     
 	}
