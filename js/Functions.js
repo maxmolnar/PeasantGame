@@ -25,6 +25,7 @@ module.exports = function() {
 	//initializes game state at server start up
 	this.init = function() {
 
+		console.log("Initializing board state");
 		var board = [];
 		//Hard coded values for now
 		for (var i = 0; i < boardSize; i++) {
@@ -67,7 +68,7 @@ module.exports = function() {
 	//updates entire board state every 5 seconds
 	this.update = function() {
 
-		console.log('updating');
+		console.log('Calculating Update');
 		var data = fs.readFileSync('json/board.json', 'utf-8');
 		var board = JSON.parse(data);
 		
