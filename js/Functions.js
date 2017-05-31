@@ -25,6 +25,10 @@ module.exports = function() {
 		console.log("Initializing board state");
 		var board = [];
 		var npcs = new SortedArrayMap();
+		var players = new SortedArrayMap();
+
+		players.add({id : 0,
+					name : 'head'}, 0);
 		var id = 0;
 		//Hard coded values for now
 		for (var i = 0; i < boardSize; i++) {
@@ -60,6 +64,7 @@ module.exports = function() {
 		}
 
 		fs.closeSync(fs.openSync('json/players.json', 'w'));
+		fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');   
 		fs.writeFile('json/npcs.json', JSON.stringify(npcs), 'utf-8');     
 	}
@@ -153,20 +158,10 @@ module.exports = function() {
 
 //returns lowest available id for given map
 var getNextID = function(type) {
-	var data = fs.readFileSync('json/' + type + '.json', 'utf-8');
+	var data = JSON.parse(fs.readFileSync('json/' + type + '.json', 'utf-8'));
 	console.log(data);
 
-	if (data == '') {
-		console.log("first");
-		return 0;
-	}
-
 	var i = 0; 
-	while (arr[i] === i) {
-		console.log(arr[i] + '===' + i);
-		i++;
-	}
-	console.log(arr[i] + '!=' + i);
 	return i; 
 }
 
