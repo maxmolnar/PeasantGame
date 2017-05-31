@@ -53,6 +53,7 @@ module.exports = function() {
 						inventory : {}
 						}, id);
 
+				console.log(npcs);
 			} else if (i === 25) {
 				stand = 'base';
 			} else if (i === 4 || i === 6 || i === 43) {
