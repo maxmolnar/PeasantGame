@@ -161,7 +161,7 @@ var getNextID = function(type) {
 	console.log('map : ' + JSON.stringify(map));
 
 	for (var prop in map) {
-   		if (!p.hasOwnProperty(prop)) {
+   		if (!map.hasOwnProperty(prop)) {
    		     //The current property is not a direct property of p
     	    continue;
     	}
