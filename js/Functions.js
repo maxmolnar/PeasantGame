@@ -55,7 +55,6 @@ module.exports = function() {
 
 				console.log(npcs.toJSON());
 				id++;
-				console.log('ID: ' + id);
 			} else if (i === 25) {
 				stand = 'base';
 			} else if (i === 4 || i === 6 || i === 43) {
@@ -66,7 +65,7 @@ module.exports = function() {
 		}
 
 		var boardJSON = JSON.stringify(board);
-		var npcsJSON = npcs.toJSON();
+		var npcsJSON = npcs.toObject();
 		console.log(npcsJSON);
 		fs.writeFile('json/board.json', boardJSON, 'utf8');   
 		fs.writeFile('json/npcs.json', npcsJSON, 'utf-8');     
