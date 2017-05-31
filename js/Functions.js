@@ -28,6 +28,7 @@ module.exports = function() {
 		console.log("Initializing board state");
 		var board = [];
 		var npcs = new SortedArrayMap();
+		var id = 0;
 		//Hard coded values for now
 		for (var i = 0; i < boardSize; i++) {
 			var ter = 'grass';
@@ -38,7 +39,6 @@ module.exports = function() {
 				stand = 'peasant';
 
 				//TODO: define stats
-				var id = 0;
 				var name = getName();
 				npcs.add({id : id,
 						name: name,
