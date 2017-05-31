@@ -51,9 +51,11 @@ module.exports = function() {
 							luck : 4},
 						equipped : {},
 						inventory : {}
-						}, id++);
+						}, id);
 
 				console.log(npcs.toJSON());
+				id++;
+				console.log(id);
 			} else if (i === 25) {
 				stand = 'base';
 			} else if (i === 4 || i === 6 || i === 43) {
