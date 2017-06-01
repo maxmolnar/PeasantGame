@@ -9,7 +9,7 @@ const numCPUs = require('os').cpus().length;
 
 if (cluster.isMaster) {
 	//master handles all calculations
-  console.log(`Master ${process.pid} is running`);
+  console.log(`Master ${process.pid} is running\n`);
 
   // Fork workers.
   for (var i = 0; i < numCPUs; i++) {
@@ -25,7 +25,6 @@ if (cluster.isMaster) {
 
   //sets update to run every 5 seconds
   setInterval(update, 5000);
-  console.log('Master updating board\n');
 
 } else {
   //Workers handle all communication
