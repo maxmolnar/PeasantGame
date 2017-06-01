@@ -1,3 +1,4 @@
 {
-	"boardSize" : 50
+	"boardSize" : 50,
+	"baseModifier" : 2
 }
