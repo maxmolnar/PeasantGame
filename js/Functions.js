@@ -10,9 +10,6 @@ var fs = require('fs');
 //Starting a collection of config vars here, theoretically they'll get moved to their own file soon
 var config = JSON.parse(fs.readFileSync('json/config.json','utf-8'));
 
-//player map, sorted by id
-//var players = new SortedArrayMap();
-
 //Array of interactions and moves to be updated
 var interactions = new List();
 var moves = new List();
