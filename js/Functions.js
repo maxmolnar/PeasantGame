@@ -37,6 +37,11 @@ module.exports = function() {
 			if (i < boardLength || i % boardLength == 0 || (i + 1) % boardLength == 0 || i > (config.boardSize - boardLength)) {
 				ter = 'water';
 
+			//create 2 bases - (2) is changeable
+			} else if (i == (2 * boardLength + 2) || i == (config.boardSize - (2 * boardLength + 2))) {
+				stand = 'base'; 
+				//update structure list
+				
 			//spawn 3 hardcoded peasant npcs
 			} else if (i === 15 || i === 20 || i === 30) {
 				stand = 'peasant';
