@@ -158,14 +158,15 @@ module.exports = function() {
 //SHOULD return lowest available id for given map
 //actually just returns nth number 
 var getNextID = function(type) {
-	var map = JSON.parse(fs.readFileSync('json/' + type + '.json', 'utf-8'));
+	//var map = JSON.parse(fs.readFileSync('json/' + type + '.json', 'utf-8'));
+	var map = '[[0,{"id":0,"name":"head"}],{"id":1,"name":"Nellie","tile":1,"role":"peasant","stats":{"strength":4,"health":5,"maxHealth":5,"faith":0,"luck":4},"equipped":{},"inventory":{}}]'
 	var i = 0;
 
 	while (map[i] != undefined) {
 		console.log('full map: ' + map);
-		console.log(i + 'th map: ' + map[i]);
+		console.log(i + 'th map: ' + map[0]);
 		console.log(i + 'th map[1]: ' + map[i][0]);
-		if (map[i][1].id != i) {
+		if (map[0][i].id != i) {
 			break;
 		}
 		i++;
