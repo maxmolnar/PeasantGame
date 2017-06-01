@@ -34,7 +34,7 @@ module.exports = function() {
 			var stand = 'empty';
 
 			//Make borders water
-			if (i < boardLength || i % boardLength == 0 || (i + 1) % boardLength == 0 || i > (boardSize - boardLength)) {
+			if (i < boardLength || i % boardLength == 0 || (i + 1) % boardLength == 0 || i > (config.boardSize - boardLength)) {
 				ter = 'water';
 
 			//spawn 3 hardcoded peasant npcs
