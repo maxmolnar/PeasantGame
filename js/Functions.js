@@ -69,10 +69,9 @@ module.exports = function() {
 	this.update = function() {
 
 		console.log('Calculating Update');
+		
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
-
-		data = fs.readFileSync('json/npcs.json', 'utf-8');
-		var npcs = JSON.parse(data);
+		var npcs = JSON.parse(fs.readFileSync('json/npcs.json', 'utf-8'));
 		
 		//loop through npc list
 		var arr = npcs.toArray();
