@@ -9,9 +9,6 @@ var fs = require('fs');
 
 //Starting a collection of config vars here, theoretically they'll get moved to their own file soon
 var config = JSON.parse(fs.readFileSync('json/config.json','utf-8'));
-console.log(config.boardSize);
-
-var boardSize = 50;
 
 //player map, sorted by id
 //var players = new SortedArrayMap();
@@ -34,7 +31,7 @@ module.exports = function() {
 					name : 'head'}, 0);
 		var id = 0;
 		//Hard coded values for now
-		for (var i = 0; i < boardSize; i++) {
+		for (var i = 0; i < config.boardSize; i++) {
 			var ter = 'grass';
 			var stand = 'empty';
 
