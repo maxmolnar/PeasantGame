@@ -29,11 +29,16 @@ module.exports = function() {
 		var id = 0;
 		//Hard coded values for now
 		for (var i = 0; i < config.boardSize; i++) {
+			var boardLength = Math.floor(Math.sqrt(config.boardSize));
 			var ter = 'grass';
 			var stand = 'empty';
 
-			//spawn 3 npcs
-			if (i === 15 || i === 20 || i === 30) {
+			//Make borders water
+			if (i < boardLength || i % boardLength == 0 || (i + 1) % boardLength == 0 || i > (boardSize - boardLength)) {
+				ter = 'water';
+
+			//spawn 3 hardcoded peasant npcs
+			} else if (i === 15 || i === 20 || i === 30) {
 				stand = 'peasant';
 
 				//TODO: define stats
@@ -53,7 +58,7 @@ module.exports = function() {
 				id++;
 			} else if (i === 25) {
 				stand = 'base';
-			} else if (i === 4 || i === 6 || i === 43) {
+			} else if (i === 14 || i === 16 || i === 43) {
 				stand = 'tree';
 			}
 			board[i] = {terrain: ter,
@@ -117,7 +122,7 @@ module.exports = function() {
 			equipped : {},
 			inventory : {}
 		}, id);
-		
+
 		board[4].standing = 'peasant';
 
 		//this may not overwrite completely if new board value has a smaller length
