@@ -39,17 +39,17 @@ module.exports = function() {
 				//TODO: define stats
 				var name = getName();
 				npcs.add({id : id,
-						name: name,
-						tile : 1,
-						role : 'peasant',
-						stats : {strength : 4,
-							health : 5,
-							maxHealth : 5,
-							faith : 0,
-							luck : 4},
-						equipped : {},
-						inventory : {}
-						}, id);
+					name: name,
+					tile : 1,
+					role : 'peasant',
+					stats : {strength : 4,
+						health : 5,
+						maxHealth : 5,
+						faith : 0,
+						luck : 4},
+					equipped : {},
+					inventory : {}
+				}, id);
 				id++;
 			} else if (i === 25) {
 				stand = 'base';
@@ -106,17 +106,18 @@ module.exports = function() {
 		var name = getName();
 
 		players.add({id : id,
-					name: name,
-					tile : 1,
-					role : 'peasant',
-					stats : {strength : 4,
-							health : 5,
-							maxHealth : 5,
-							faith : 0,
-							luck : 4},
-					equipped : {},
-					inventory : {}
-					}, id);
+			name: name,
+			tile : 1,
+			role : 'peasant',
+			stats : {strength : 4,
+				health : 5,
+				maxHealth : 5,
+				faith : 0,
+				luck : 4},
+			equipped : {},
+			inventory : {}
+		}, id);
+		
 		board[4].standing = 'peasant';
 
 		//this may not overwrite completely if new board value has a smaller length
