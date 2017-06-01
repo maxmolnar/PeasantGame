@@ -162,19 +162,12 @@ var getNextID = function(type) {
 	var i = 1;
 
 	while (map[i] != undefined) {
-		console.log('full map: ' + map);
-		console.log(i + 'th map: ' + map[0]);
-		console.log(i + 'th map[1]: ' + map[i]);
 		if (map[i].id != (i-1)) {
 			console.log(map[0][i].id + '!=' + i);
 			break;
 		}
 		i++;
 	}
-	console.log(map);
-	console.log(map[0][1]);
-	console.log(map[1]);
-	console.log("i = " + i);
 	return (i-1); 
 }
 
