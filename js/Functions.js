@@ -8,6 +8,9 @@ var SortedArrayMap = require('collections/sorted-array-map');
 var fs = require('fs');
 
 //Starting a collection of config vars here, theoretically they'll get moved to their own file soon
+var config = JSON.parse(fs.readFileSync('json/config.json','utf-8'));
+console.log(config.boardSize);
+
 var boardSize = 50;
 
 //player map, sorted by id
