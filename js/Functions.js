@@ -69,8 +69,7 @@ module.exports = function() {
 	this.update = function() {
 
 		console.log('Calculating Update');
-		var data = fs.readFileSync('json/board.json', 'utf-8');
-		var board = JSON.parse(data);
+		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 
 		data = fs.readFileSync('json/npcs.json', 'utf-8');
 		var npcs = JSON.parse(data);
@@ -88,11 +87,8 @@ module.exports = function() {
 
 
 		//this may not overwrite completely if new board value has a smaller length
-		var json = JSON.stringify(board);
-		fs.writeFile('json/board.json', json, 'utf8');
-
-		json = JSON.stringify(npcs);
-		fs.writeFile('json/npcs.json', json, 'utf-8');
+		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');
+		fs.writeFile('json/npcs.json', JSON.stringify(npcs), 'utf-8');
 
 		io.emit('board state',board);
 	}
@@ -100,8 +96,7 @@ module.exports = function() {
 	//call this when player first connects to game server
 	this.playerSpawn = function(clientID) {
 		//draws board immediately on connection
-		var data = fs.readFileSync('json/board.json', 'utf-8');
-		var board = JSON.parse(data);
+		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		io.emit('board state',board);
 
 		var players = JSON.parse(fs.readFileSync('json/players.json', 'utf-8'));
@@ -124,9 +119,7 @@ module.exports = function() {
 		board[4].standing = 'peasant';
 
 		//this may not overwrite completely if new board value has a smaller length
-		var json = JSON.stringify(board);
-		fs.writeFile('json/board.json', json, 'utf8');
-
+		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');
 		fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
 
 	}
