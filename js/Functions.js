@@ -69,7 +69,7 @@ module.exports = function() {
 	this.update = function() {
 
 		console.log('Calculating Update');
-		
+
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		var npcs = JSON.parse(fs.readFileSync('json/npcs.json', 'utf-8'));
 		
@@ -100,7 +100,9 @@ module.exports = function() {
 
 		var players = JSON.parse(fs.readFileSync('json/players.json', 'utf-8'));
 
-		var id = getNextID('players');
+		//design choich - undecided
+		//var id = getNextID('players');
+		var id = clientID;
 		var name = getName();
 
 		players.add({id : id,
