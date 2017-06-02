@@ -25,6 +25,7 @@ module.exports = function() {
 		var npcs = new SortedArrayMap();
 		var players = new SortedArrayMap();
 
+		//give client config information
 		io.emit('config',config);
 
 		players.add({id : 0,
@@ -176,8 +177,7 @@ module.exports = function() {
 		turn = {id: id,
 				tile: tile};
 
-		var data = fs.readFileSync('json/board.json', 'utf-8');
-		var board = JSON.parse(data);
+		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		
 		//move
 		if (board[tile].standing == 'empty') {
