@@ -21,6 +21,7 @@ module.exports = function() {
 
 		console.log("Initializing board state");
 		var board = [];
+		var structures = [];
 		var boardLength = Math.floor(Math.sqrt(config.boardSize));
 		var npcs = new SortedArrayMap();
 		var players = new SortedArrayMap();
@@ -44,6 +45,7 @@ module.exports = function() {
 			//create 2 bases **Only 1 for now**
 			} else if (i == (config.baseModifier * boardLength + config.baseModifier)) {
 				stand = 'base'; 
+				
 				//update structure list
 
 			//Spawn resources randomly
@@ -178,15 +180,16 @@ module.exports = function() {
 				tile: tile};
 
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
-		
+		var list;
+
 		//move
 		if (board[tile].standing == 'empty') {
-			//list = move list
+			list = 'moves';
 		}
 
 		//interaction
 		else {
-			//list = interaction list
+			list = 'interactions';
 		}
 		//list.push(turn)
 	}
