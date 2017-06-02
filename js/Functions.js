@@ -21,6 +21,7 @@ module.exports = function() {
 
 		console.log("Initializing board state");
 		var board = [];
+		var boardLength = Math.floor(Math.sqrt(config.boardSize));
 		var npcs = new SortedArrayMap();
 		var players = new SortedArrayMap();
 
@@ -29,7 +30,7 @@ module.exports = function() {
 		var id = 0;
 		//Hard coded values for now
 		for (var i = 0; i < config.boardSize; i++) {
-			var boardLength = Math.floor(Math.sqrt(config.boardSize));
+			var chance = Math.random();
 			var ter = 'grass';
 			var stand = 'empty';
 
@@ -43,7 +44,7 @@ module.exports = function() {
 				//update structure list
 
 			//Spawn resources randomly
-			} else if ((var chance = Math.random()) < (config.baseTreeRate + config.baseStoneRate + config.baseBerryRate)) {
+			} else if (chance < (config.baseTreeRate + config.baseStoneRate + config.baseBerryRate)) {
 				if (chance > (config.baseTreeRate + config.baseStoneRate)) {
 					stand = 'berry';
 				} else if (chance > config.baseTreeRate) {
