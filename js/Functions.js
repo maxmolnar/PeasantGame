@@ -57,7 +57,12 @@ module.exports = function() {
 						maxHealth : 5,
 						faith : 0,
 						luck : 4},
-					equipped : {},
+					equipped : {head : '',
+						gloves : '',
+						chest : '',
+						pants : '',
+						boots : '',
+						weapon : ''},
 					inventory : {},
 					quest : 'Gather Wood'
 				}, id);
@@ -123,7 +128,12 @@ module.exports = function() {
 				maxHealth : 5,
 				faith : 0,
 				luck : 4},
-			equipped : {},
+			equipped : {head : '',
+				gloves : '',
+				chest : '',
+				pants : '',
+				boots : '',
+				weapon : ''},
 			inventory : {},
 			quest : ''
 		}, id);
