@@ -137,7 +137,7 @@ module.exports = function() {
 		board[location].standing = 'peasant';
 
 		var name = getName();
-		npcs.add({id : clientID,
+		players.add({id : clientID,
 			name: name,
 			tile : 1,
 			role : 'peasant',
@@ -155,7 +155,6 @@ module.exports = function() {
 			inventory : {},
 			quest : 'Gather Wood'
 		});
-	}
 
 		//this may not overwrite completely if new board value has a smaller length
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');
