@@ -37,13 +37,14 @@
         //Use Pixi's built-in `loader` module to load an image
         loader
             .add("images/ground.png")
+            .add("images/water.png")
             .add("images/tree.png")
             .add("images/peasant.png")
             .add("images/base.png")
             .load(setup);
         //This `setup` function will run when the image has loaded
         function setup() {
-              
+            
         }
         
         socket.on('board state', function(board){
@@ -54,16 +55,18 @@
         
         //TODO use config file for boardsize
         function drawBoard(){
-            for(var j = 0; j < 7; j++){
-                for(var i = 0; i < 7; i++){
-                    var tileNmb = i + j * 7;
-
-                      var ter = new Sprite(resources["images/ground.png"].texture);
-                      if(typeof tiles[tileNmb] === "undefined"){
-                          if(boardState[tileNmb].terrain == 'grass'){
-                              ter = new Sprite(resources["images/ground.png"].texture);
-                          }
-                          tiles[tileNmb] = ter;
+            for(var j = 0; j < 10; j++){
+                for(var i = 0; i < 10; i++){
+                    var tileNmb = i + j * 10;
+                    
+                    var ter = new Sprite(resources["images/ground.png"].texture);
+                    if(typeof tiles[tileNmb] === "undefined"){
+                        if(boardState[tileNmb].terrain == 'grass'){
+                            ter = new Sprite(resources["images/ground.png"].texture);
+                        }else if(boardState[tileNmb].terrain == 'water'){
+                            ter = new Sprite(resources["images/water.png"].texture);
+                        }
+                        tiles[tileNmb] = ter;
                     }
                     tiles[tileNmb].width = tileWidth;
                     tiles[tileNmb].height = tileHeight;
@@ -83,22 +86,22 @@
                             console.log('drawing trees');
                             trees[tileNmb] = [];
                             var yAccumulation = tileHeight / 4;
-                            var i = 0;
+                            var z = 0;
                             while(yAccumulation < tileHeight - tileHeight / 4){
-                                trees[tileNmb][i] = new Sprite(resources["images/tree.png"].texture);
+                                trees[tileNmb][z] = new Sprite(resources["images/tree.png"].texture);
                                 yAccumulation += randomInt(0, 5);
-                                trees[tileNmb][i].yOffSet = yAccumulation;
-                                trees[tileNmb][i].xOffSet = randomInt(trees[tileNmb][i].width, tileWidth - trees[tileNmb][i].width / 2);
-                                trees[tileNmb][i].x = tiles[tileNmb].x + trees[tileNmb][i].xOffSet - trees[tileNmb][i].width;
-                                trees[tileNmb][i].y = tiles[tileNmb].y + trees[tileNmb][i].yOffSet - trees[tileNmb][i].height;
-                                stage.addChild(trees[tileNmb][i]);
-                                i++; 
+                                trees[tileNmb][z].yOffSet = yAccumulation;
+                                trees[tileNmb][z].xOffSet = randomInt(trees[tileNmb][z].width, tileWidth - trees[tileNmb][z].width / 2);
+                                trees[tileNmb][z].x = tiles[tileNmb].x + trees[tileNmb][z].xOffSet - trees[tileNmb][z].width;
+                                trees[tileNmb][z].y = tiles[tileNmb].y + trees[tileNmb][z].yOffSet - trees[tileNmb][z].height;
+                                stage.addChild(trees[tileNmb][z]);
+                                z++; 
                             }
                         }else{
-                            for(var i = 0; i < trees[tileNmb].length; i++){
-                                trees[tileNmb][i].x = tiles[tileNmb].x + trees[tileNmb][i].xOffSet- trees[tileNmb][i].width;
-                                trees[tileNmb][i].y = tiles[tileNmb].y + trees[tileNmb][i].yOffSet - trees[tileNmb][i].height;
-                                stage.addChild(trees[tileNmb][i]);
+                            for(var z = 0; z < trees[tileNmb].length; z++){
+                                trees[tileNmb][z].x = tiles[tileNmb].x + trees[tileNmb][z].xOffSet- trees[tileNmb][z].width;
+                                trees[tileNmb][z].y = tiles[tileNmb].y + trees[tileNmb][z].yOffSet - trees[tileNmb][z].height;
+                                stage.addChild(trees[tileNmb][z]);
                             }
                         }
                     }else if(boardState[tileNmb].standing == 'base'){
@@ -114,15 +117,15 @@
             }
             renderer.render(stage);
         }
-            
-            
+        
+        
         window.addEventListener('mousemove', function(event) {
             if(mouseDown){
                 screenLoc.x = screenLok.x + mouseLoc.x - event.clientX;
                 screenLoc.y = screenLok.y + mouseLoc.y - event.clientY;
                 drawBoard();
             }
-         });
+        });
         
         window.addEventListener('mousedown', function(event) {
             mouseDown = true;
@@ -139,6 +142,6 @@
         function randomInt(min, max){
             return Math.floor(Math.random() * (max - min) + min) + 1;
         }
-
+        
     </script>
 </body>
