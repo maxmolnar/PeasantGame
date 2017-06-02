@@ -57,16 +57,18 @@ module.exports = function() {
 						maxHealth : 5,
 						faith : 0,
 						luck : 4},
-					equipped : {head : '',
-						gloves : '',
-						chest : '',
-						pants : '',
-						boots : '',
-						weapon : ''},
+					equipped : {head : {},
+						gloves : {},
+						chest : {},
+						pants : {},
+						boots : {},
+						weapon : {}},
 					inventory : {},
 					quest : 'Gather Wood'
 				}, id);
 				id++;
+
+			//Spawn a tree randomly
 			} else if (Math.random() < config.baseTreeRate) {
 				stand = 'tree';
 			}
@@ -128,12 +130,12 @@ module.exports = function() {
 				maxHealth : 5,
 				faith : 0,
 				luck : 4},
-			equipped : {head : '',
-				gloves : '',
-				chest : '',
-				pants : '',
-				boots : '',
-				weapon : ''},
+			equipped : {head : {},
+				gloves : {},
+				chest : {},
+				pants : {},
+				boots : {},
+				weapon : {}},
 			inventory : {},
 			quest : ''
 		}, id);
