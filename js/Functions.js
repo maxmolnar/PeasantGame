@@ -58,7 +58,8 @@ module.exports = function() {
 						faith : 0,
 						luck : 4},
 					equipped : {},
-					inventory : {}
+					inventory : {},
+					quest : 'Gather Wood'
 				}, id);
 				id++;
 			} else if (i === 14 || i === 16 || i === 43) {
@@ -123,7 +124,8 @@ module.exports = function() {
 				faith : 0,
 				luck : 4},
 			equipped : {},
-			inventory : {}
+			inventory : {},
+			quest : ''
 		}, id);
 
 		board[4].standing = 'peasant';
