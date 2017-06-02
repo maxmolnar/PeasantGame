@@ -42,9 +42,15 @@ module.exports = function() {
 				stand = 'base'; 
 				//update structure list
 
-			//Spawn a tree randomly
-			} else if (Math.random() < config.baseTreeRate) {
-				stand = 'tree';
+			//Spawn resources randomly
+			} else if ((var chance = Math.random()) < (config.baseTreeRate + config.baseStoneRate + config.baseBerryRate)) {
+				if (chance > (config.baseTreeRate + config.baseStoneRate)) {
+					stand = 'berry';
+				} else if (chance > config.baseTreeRate) {
+					stand = 'stone';
+				} else {
+					stand = 'tree';
+				}
 			}
 			board[i] = {terrain: ter,
 						standing: stand};
