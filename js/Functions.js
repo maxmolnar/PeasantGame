@@ -42,13 +42,27 @@ module.exports = function() {
 				stand = 'base'; 
 				//update structure list
 
-			//spawn 3 hardcoded peasant npcs
-			} else if (i === 15 || i === 20 || i === 30) {
-				stand = 'peasant';
+			//Spawn a tree randomly
+			} else if (Math.random() < config.baseTreeRate) {
+				stand = 'tree';
+			}
+			board[i] = {terrain: ter,
+						standing: stand};
+		}
 
-				//TODO: define stats
-				var name = getName();
-				npcs.add({id : id,
+		//Spawn 5 npc peasants near base
+		var location;
+		for (i = 0; i < 5; i++) {
+
+			location = getSpawn();
+			while (board[location].standing != 'empty') {
+				location = getSpawn();
+			}
+
+			board[location].standing = 'peasant';
+
+			var name = getName();
+				npcs.add({id : i,
 					name: name,
 					tile : 1,
 					role : 'peasant',
@@ -65,15 +79,7 @@ module.exports = function() {
 						weapon : {}},
 					inventory : {},
 					quest : 'Gather Wood'
-				}, id);
-				id++;
-
-			//Spawn a tree randomly
-			} else if (Math.random() < config.baseTreeRate) {
-				stand = 'tree';
-			}
-			board[i] = {terrain: ter,
-						standing: stand};
+				}, i);
 		}
 
 		fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
@@ -192,4 +198,11 @@ var getName = function() {
 	var name = names[Math.floor(Math.random() * names.length)]
 	console.log(name + " has joined the game");
 	return name;
+}
+
+var getSpawn = function() {
+	var boardLength = Math.sqrt(config.boardSize);
+	var locX = Math.floor(Math.random() * 5);
+	var locY = Math.floor(Math.random() * 5);
+	return (locX + locY * boardLength);
 }
