@@ -25,6 +25,8 @@ module.exports = function() {
 		var npcs = new SortedArrayMap();
 		var players = new SortedArrayMap();
 
+		io.emit('config',config);
+
 		players.add({id : 0,
 					name : 'head'}, 0);
 		var id = 0;

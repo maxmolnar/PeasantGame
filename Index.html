@@ -6,6 +6,7 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         var boardState;
+        var config
         var socket = io();
         var mouseDown = false;
         
@@ -52,6 +53,11 @@
             drawBoard();
             console.log('updating board');
         });
+
+        socket.on('config', function(conf) {
+            config = conf;
+            console.log('i worked');
+        })
         
         //TODO listen here you little fgt hardcoding these values isn't the same as using the config file
         function drawBoard(){
