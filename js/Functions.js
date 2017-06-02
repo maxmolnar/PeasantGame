@@ -62,7 +62,7 @@ module.exports = function() {
 		for (i = 0; i < 5; i++) {
 
 			location = getSpawn();
-			while (board[location].standing != 'empty') {
+			while (board[location].standing !== 'empty') {
 				location = getSpawn();
 			}
 
@@ -137,7 +137,7 @@ module.exports = function() {
 		var location;
 
 		location = getSpawn();
-		while (board[location].standing != 'empty') {
+		while (board[location].standing !== 'empty') {
 			location = getSpawn();
 		}
 
