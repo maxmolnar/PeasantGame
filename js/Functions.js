@@ -215,6 +215,7 @@ var getName = function() {
 	return name;
 }
 
+//returns location 5 hex away from base
 var getSpawn = function() {
 	var boardLength = Math.sqrt(config.boardSize);
 	var locX = Math.floor(Math.random() * 5);
