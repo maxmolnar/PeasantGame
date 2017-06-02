@@ -37,8 +37,8 @@ module.exports = function() {
 			if (i < boardLength || i % boardLength == 0 || (i + 1) % boardLength == 0 || i > (config.boardSize - boardLength)) {
 				ter = 'water';
 
-			//create 2 bases 
-			} else if (i == (config.baseModifier * boardLength + config.baseModifier) || i == (config.boardSize - (config.baseModifier * boardLength + config.baseModifier))) {
+			//create 2 bases **Only 1 for now**
+			} else if (i == (config.baseModifier * boardLength + config.baseModifier)) {
 				stand = 'base'; 
 				//update structure list
 
