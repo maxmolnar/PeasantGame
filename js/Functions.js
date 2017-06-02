@@ -67,7 +67,7 @@ module.exports = function() {
 					quest : 'Gather Wood'
 				}, id);
 				id++;
-			} else if (i === 14 || i === 16 || i === 43) {
+			} else if (Math.random() < config.baseTreeRate) {
 				stand = 'tree';
 			}
 			board[i] = {terrain: ter,
