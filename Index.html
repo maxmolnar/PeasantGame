@@ -1,6 +1,7 @@
 <!doctype html>
 <meta charset="utf-8">
 <title>fun</title>
+<style>* {padding: 0; margin: 0}</style>
 <body>
     <script src="pixi.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
@@ -21,8 +22,13 @@
         //Create a Pixi stage and renderer and add the 
         //renderer.view to the DOM
         var stage = new Container(),
-            renderer = autoDetectRenderer(900, 900);
+            renderer = autoDetectRenderer(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.view);
+        
+        renderer.view.style.position = "absolute";
+        renderer.view.style.display = "block";
+        renderer.autoResize = true;
+        renderer.resize(window.innerWidth, window.innerHeight);
         
         var tileHeight = 103,
             tileWidth = 88;
