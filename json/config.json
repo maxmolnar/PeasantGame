@@ -1,7 +1,7 @@
 {
-	"boardSize" : 100,
-	"baseModifier" : 2,
-	"baseTreeRate" : 0.1,
-	"baseStoneRate" : 0.1,
-	"baseBerryRate" : 0.1
+	"boardSize" : 1000,
+	"baseModifier" : 4,
+	"baseTreeRate" : 0.01,
+	"baseStoneRate" : 0.01,
+	"baseBerryRate" : 0.01
 }
