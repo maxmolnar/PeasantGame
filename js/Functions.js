@@ -224,6 +224,6 @@ var getName = function() {
 var getSpawn = function() {
 	var boardLength = Math.sqrt(config.boardSize);
 	var locX = config.baseModifier + (Math.floor(Math.random() * 5 - 2.5));
-	var locY = Math.floor(Math.random() * 5);
+	var locY = config.baseModifier + (Math.floor(Math.random() * 5 - 2.5));
 	return (locX + locY * boardLength);
 }
