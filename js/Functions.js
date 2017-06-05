@@ -9,6 +9,7 @@ var fs = require('fs');
 
 //Starting a collection of config vars here, theoretically they'll get moved to their own file soon
 var config = JSON.parse(fs.readFileSync('json/config.json','utf-8'));
+var boardLength = Math.sqrt(config.boardSize);
 
 //Array of interactions and moves to be updated
 var interactions = new List();
@@ -226,4 +227,9 @@ var getSpawn = function() {
 	var locX = config.baseModifier + (Math.floor(Math.random() * 5 - 2.5));
 	var locY = config.baseModifier + (Math.floor(Math.random() * 5 - 2.5));
 	return (locX + locY * boardLength);
+}
+
+//returns closest standing to location
+var find = function(location, standing) {
+	var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 }
