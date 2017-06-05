@@ -192,7 +192,10 @@ module.exports = function() {
 		else {
 			list = 'interactions';
 		}
-		//list.push(turn)
+
+		var listData = JSON.parse(fs.readFileSync('json/' + list + '.json', 'utf-8'));
+		listData.add(turn);
+		fs.writeFile('json/' + list + '.json', 'utf-8');
 	}
 }
 
