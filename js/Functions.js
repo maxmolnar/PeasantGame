@@ -149,7 +149,7 @@ module.exports = function() {
 
 		board[location].standing = 'peasant';
 
-		var name = getName();
+		//var name = getName();
 		players.add({id : clientID,
 			name: name,
 			tile : 1,
