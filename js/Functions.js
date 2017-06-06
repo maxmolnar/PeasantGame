@@ -24,7 +24,8 @@ module.exports = function() {
 		var board = [];
 		var structures = [];
 		var boardLength = Math.floor(Math.sqrt(config.boardSize));
-		var npcs = new SortedArrayMap();
+		//var npcs = new SortedArrayMap();
+		var npcs = new Array();
 		var players = new SortedArrayMap();
 
 		//give client config information
@@ -75,24 +76,23 @@ module.exports = function() {
 			board[location].standing = 'peasant';
 
 			var name = getName();
-				npcs.add({id : i,
-					name: name,
-					tile : 1,
-					role : 'peasant',
-					stats : {strength : 4,
-						health : 5,
-						maxHealth : 5,
-						faith : 0,
-						luck : 4},
-					equipped : {head : {},
-						gloves : {},
-						chest : {},
-						pants : {},
-						boots : {},
-						weapon : {}},
-					inventory : {},
-					quest : 'Gather Wood'
-				}, i);
+			npcs[i] = {name: name,
+				tile : 1,
+				role : 'peasant',
+				stats : {strength : 4,
+					health : 5,
+					maxHealth : 5,
+					faith : 0,
+					luck : 4},
+				equipped : {head : {},
+					gloves : {},
+					chest : {},
+					pants : {},
+					boots : {},
+					weapon : {}},
+				inventory : {},
+				quest : 'Gather Wood'
+			};
 		}
 
 		fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
