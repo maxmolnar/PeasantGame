@@ -98,6 +98,8 @@ module.exports = function() {
 		fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');   
 		fs.writeFile('json/npcs.json', JSON.stringify(npcs), 'utf-8');     
+		fs.writeFile('json/interactions.json', '[]', 'utf-8');
+		fs.writeFile('json/moves.json', '[]', 'utf-8');
 	}
 
 	//updates entire board state every 5 seconds
@@ -107,8 +109,8 @@ module.exports = function() {
 
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		var npcs = JSON.parse(fs.readFileSync('json/npcs.json', 'utf-8'));
-		var interactions = JSON.parse(fs.ReadFileSync('json/interactions.json', 'utf-8'));
-		var moves = JSON.parse(fs.ReadFileSync('json/moves.json', 'utf-8'));
+		var interactions = JSON.parse(fs.readFileSync('json/interactions.json', 'utf-8'));
+		var moves = JSON.parse(fs.readFileSync('json/moves.json', 'utf-8'));
 
 		if (lock === 1) {
 			console.log('Atomic Error tell max');
