@@ -160,9 +160,15 @@ module.exports = function() {
 			n++;
 		}
 
+		var location = getSpawn();
+		while (board[location].standing !== 'empty' || board[location].terrain == 'water') {
+			location = getSpawn();
+		}
+
+		board[location].standing = 'peasant';		
 		players[n] = {id : clientID,
-			name: name,
-			tile : 1,
+			name: name,		
+			tile : location,
 			role : 'peasant',
 			stats : {strength : 4,
 				health : 5,
@@ -237,8 +243,8 @@ var getName = function() {
 //returns location 5 hex away from base
 var getSpawn = function() {
 	var boardLength = Math.sqrt(config.boardSize);
-	var locX = config.baseModifier + (Math.floor(Math.random() * 5 - 2.5));
-	var locY = config.baseModifier + (Math.floor(Math.random() * 5 - 2.5));
+	var locX = config.baseModifier + (Math.floor(Math.random() * 10 - 5));
+	var locY = config.baseModifier + (Math.floor(Math.random() * 10 - 5));
 	return (locX + locY * boardLength);
 }
 
