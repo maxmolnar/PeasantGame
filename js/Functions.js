@@ -241,10 +241,11 @@ var getName = function() {
 }
 
 //returns location 5 hex away from base
+//update for more flexibility sometime
 var getSpawn = function() {
 	var boardLength = Math.sqrt(config.boardSize);
-	var locX = config.baseModifier + (Math.floor(Math.random() * 10 - 5));
-	var locY = config.baseModifier + (Math.floor(Math.random() * 10 - 5));
+	var locX = config.baseModifier + (Math.floor(Math.random() * 5 - 2.5));
+	var locY = config.baseModifier + (Math.floor(Math.random() * 5 - 2.5));
 	return (locX + locY * boardLength);
 }
 
