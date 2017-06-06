@@ -106,6 +106,8 @@ module.exports = function() {
 
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		var npcs = JSON.parse(fs.readFileSync('json/npcs.json', 'utf-8'));
+		var interactions = JSON.parse(fs.ReadFileSync('json/interactions.json', 'utf-8'));
+		var moves = JSON.parse(fs.ReadFileSync('json/moves.json', 'utf-8'));
 		
 		//loop through npc list
 		var arr = npcs.toArray();
@@ -122,6 +124,8 @@ module.exports = function() {
 		//this may not overwrite completely if new board value has a smaller length
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');
 		fs.writeFile('json/npcs.json', JSON.stringify(npcs), 'utf-8');
+		fs.writeFile('json/interactions.json', '[]', 'utf-8');
+		fs.writeFile('json/moves.json', '[]', 'utf-8');
 
 		io.emit('board state',board);
 	}
