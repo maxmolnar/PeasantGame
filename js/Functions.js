@@ -24,7 +24,7 @@ module.exports = function() {
 		var board = [];
 		var structures = [];
 		var boardLength = Math.floor(Math.sqrt(config.boardSize));
-		var npcs = new Array();
+		var npcs = [];
 		//var players = new SortedArrayMap();
 
 		//give client config information
@@ -137,6 +137,7 @@ module.exports = function() {
 			players = JSON.parse(fs.readFileSync('json/players.json', 'utf-8'));
 		} catch(err) {
 			console.log('creating player array');
+			players = [];
 		}
 
 
@@ -154,8 +155,12 @@ module.exports = function() {
 
 		board[location].standing = 'peasant';
 
-		//var name = getName();
-		players[clientID] = {id : clientID,
+		var n = 0;
+		while (players[n] !== undefined) {
+			n++;
+		}
+
+		players[n] = {id : clientID,
 			name: name,
 			tile : 1,
 			role : 'peasant',
