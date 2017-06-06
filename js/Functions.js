@@ -24,15 +24,14 @@ module.exports = function() {
 		var board = [];
 		var structures = [];
 		var boardLength = Math.floor(Math.sqrt(config.boardSize));
-		//var npcs = new SortedArrayMap();
 		var npcs = new Array();
-		var players = new SortedArrayMap();
+		//var players = new SortedArrayMap();
 
 		//give client config information
 		io.emit('config',config);
 
-		players.add({id : 0,
-					name : 'head'}, 0);
+		//players.add({id : 0,
+		//			name : 'head'}, 0);
 		var id = 0;
 		//Hard coded values for now
 		for (var i = 0; i < config.boardSize; i++) {
@@ -95,7 +94,7 @@ module.exports = function() {
 			};
 		}
 
-		fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
+		//fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');   
 		fs.writeFile('json/npcs.json', JSON.stringify(npcs), 'utf-8');     
 	}
@@ -133,7 +132,13 @@ module.exports = function() {
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		io.emit('board state',board);
 
-		var players = JSON.parse(fs.readFileSync('json/players.json', 'utf-8'));
+		var players;
+		try {	
+			players = JSON.parse(fs.readFileSync('json/players.json', 'utf-8'));
+		} catch(err) {
+			console.log('creating player array');
+		}
+
 
 		//design choich - undecided
 		//var id = getNextID('players');
@@ -150,7 +155,7 @@ module.exports = function() {
 		board[location].standing = 'peasant';
 
 		//var name = getName();
-		players.add({id : clientID,
+		players[clientID] = {id : clientID,
 			name: name,
 			tile : 1,
 			role : 'peasant',
@@ -167,7 +172,7 @@ module.exports = function() {
 				weapon : {}},
 			inventory : {},
 			quest : 'Gather Wood'
-		});
+		};
 
 		//this may not overwrite completely if new board value has a smaller length
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');
