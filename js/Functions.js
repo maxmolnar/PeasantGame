@@ -25,7 +25,7 @@ module.exports = function() {
 		var structures = [];
 		var boardLength = Math.floor(Math.sqrt(config.boardSize));
 		var npcs = [];
-		//var players = new SortedArrayMap();
+		var players = [];
 
 		//give client config information
 		io.emit('config',config);
@@ -94,7 +94,7 @@ module.exports = function() {
 			};
 		}
 
-		//fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
+		fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');   
 		fs.writeFile('json/npcs.json', JSON.stringify(npcs), 'utf-8');     
 	}
