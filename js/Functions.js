@@ -10,6 +10,7 @@ var fs = require('fs');
 //Starting a collection of config vars here, theoretically they'll get moved to their own file soon
 var config = JSON.parse(fs.readFileSync('json/config.json','utf-8'));
 var boardLength = Math.sqrt(config.boardSize);
+var lock = 0;
 
 //Array of interactions and moves to be updated
 var interactions = new List();
@@ -108,6 +109,11 @@ module.exports = function() {
 		var npcs = JSON.parse(fs.readFileSync('json/npcs.json', 'utf-8'));
 		var interactions = JSON.parse(fs.ReadFileSync('json/interactions.json', 'utf-8'));
 		var moves = JSON.parse(fs.ReadFileSync('json/moves.json', 'utf-8'));
+
+		if (lock === 1) {
+			console.log('Atomic Error tell max');
+		}
+		lock = 1;
 		
 		//loop through npc list
 		var arr = npcs.toArray();
@@ -127,6 +133,7 @@ module.exports = function() {
 		fs.writeFile('json/interactions.json', '[]', 'utf-8');
 		fs.writeFile('json/moves.json', '[]', 'utf-8');
 
+		lock = 0;
 		io.emit('board state',board);
 	}
 
@@ -135,6 +142,11 @@ module.exports = function() {
 		//draws board immediately on connection
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		io.emit('board state',board);
+
+		if (lock === 1) {
+			console.log('atomic error tell max');
+		}
+		lock = 1;
 
 		var players;
 		try {	
@@ -193,12 +205,19 @@ module.exports = function() {
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');
 		fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
 
+		lock = 0;
+
 	}
 
 	//adds turn object to proper list
 	this.commitTurn = function(id, tile) {
 		turn = {id: id,
 				tile: tile};
+
+		if (lock === 1) {
+			console.log('atomic error tell max');
+		}
+		lock = 1;
 
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		var list;
@@ -216,6 +235,7 @@ module.exports = function() {
 		var listData = JSON.parse(fs.readFileSync('json/' + list + '.json', 'utf-8'));
 		listData.add(turn);
 		fs.writeFile('json/' + list + '.json', 'utf-8');
+		lock = 0;
 	}
 }
 
