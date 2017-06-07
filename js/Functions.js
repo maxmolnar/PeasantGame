@@ -29,6 +29,7 @@ module.exports = function() {
 		var players = [];
 
 		//give client config information
+		console.log('emitting');
 		io.emit('config',config);
 
 		//players.add({id : 0,

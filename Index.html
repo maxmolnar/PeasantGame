@@ -63,10 +63,10 @@
         });
 
         socket.on('config', function(conf) {
+            console.log('i worked');
             config = conf;
             boardSize = config.boardSize;
             boardLength = Math.floor(Math.sqrt(boardSize));
-            console.log('i worked');
         })
         
         //TODO listen here you little fgt hardcoding these values isn't the same as using the config file
