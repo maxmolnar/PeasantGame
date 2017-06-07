@@ -71,10 +71,8 @@
         
         //TODO listen here you little fgt hardcoding these values isn't the same as using the config file
         function drawBoard(){
-            //for(var j = 0; j < 10; j++){
-                //for(var i = 0; i < 10; i++){
             for (var j = 0; j < boardLength; j++ ) {
-		for ( var i = 0; i < boardLength; i++) {
+		        for ( var i = 0; i < boardLength; i++) {
                     var tileNmb = i + j * 10;
                     
                     var ter = new Sprite(resources["images/ground.png"].texture);
