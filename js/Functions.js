@@ -242,8 +242,7 @@ module.exports = function() {
 	}
 }
 
-//SHOULD return lowest available id for given map
-//actually just returns nth number 
+//is this even used?
 var getNextID = function(type) {
 	var map = JSON.parse(fs.readFileSync('json/' + type + '.json', 'utf-8'));
 	var i = 1;
