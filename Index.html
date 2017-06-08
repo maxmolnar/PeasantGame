@@ -71,8 +71,8 @@
         
 
         function drawBoard(){
-            for (var j = 0; j < boardLength; j++ ) {
-		        for ( var i = 0; i < boardLength; i++) {
+            for (var j = 0; j < 10; j++ ) {
+		        for ( var i = 0; i < 10; i++) {
                     var tileNmb = i + j * 10;
                     
                     var ter = new Sprite(resources["images/ground.png"].texture);
@@ -136,6 +136,9 @@
         
         
         window.addEventListener('mousemove', function(event) {
+            var hexY = Math.floor(event.clientY / (tileHeight + tileHeight / 2));
+            var hexX = Math.floor((event.clientX - (hexY % 2) * tileHeight / 2) / tileWidth);
+
             if(mouseDown){
                 screenLoc.x = screenLok.x + mouseLoc.x - event.clientX;
                 screenLoc.y = screenLok.y + mouseLoc.y - event.clientY;
