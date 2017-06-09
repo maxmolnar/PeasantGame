@@ -144,8 +144,9 @@ module.exports = function() {
 	this.playerSpawn = function(clientID) {
 		//draws board immediately on connection
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
-		io.emit('board state',board);
-
+		io.emit('config',config);
+        io.emit('board state',board);
+        
 		if (lock === 1) {
 			console.log('atomic error tell max');
 		}
