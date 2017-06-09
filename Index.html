@@ -136,9 +136,6 @@
         
         
         window.addEventListener('mousemove', function(event) {
-            var hexY = Math.floor(event.clientY / (tileHeight + tileHeight / 2));
-            var hexX = Math.floor((event.clientX - (hexY % 2) * tileHeight / 2) / tileWidth);
-
             if(mouseDown){
                 screenLoc.x = screenLok.x + mouseLoc.x - event.clientX;
                 screenLoc.y = screenLok.y + mouseLoc.y - event.clientY;
