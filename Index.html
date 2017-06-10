@@ -32,6 +32,8 @@
         
         var tileHeight = 103,
             tileWidth = 88;
+        var boardLength;
+        var boardSize;
         
         //this is shitty way to do this. need better way
         var tiles = [];
@@ -61,14 +63,16 @@
         });
 
         socket.on('config', function(conf) {
-            config = conf;
             console.log('i worked');
+            config = conf;
+            boardSize = config.boardSize;
+            boardLength = Math.floor(Math.sqrt(boardSize));
         })
         
-        //TODO listen here you little fgt hardcoding these values isn't the same as using the config file
+
         function drawBoard(){
-            for(var j = 0; j < 10; j++){
-                for(var i = 0; i < 10; i++){
+            for (var j = 0; j < boardLength; j++ ) {
+		        for ( var i = 0; i < boardLength; i++) {
                     var tileNmb = i + j * 10;
                     
                     var ter = new Sprite(resources["images/ground.png"].texture);
