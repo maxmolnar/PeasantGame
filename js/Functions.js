@@ -165,6 +165,7 @@ module.exports = function() {
 		//var id = getNextID('players');
 		var id = clientID;
 		var name = getName();
+		console.log(name);
 
 		var location;
 
@@ -263,7 +264,7 @@ var getName = function() {
 	var data = fs.readFileSync('json/names.txt', 'utf-8');
 	var names = data.split('\n');
 	var name = names[Math.floor(Math.random() * names.length)]
-	console.log(name + " has joined the game");
+	console.log(name + ' has joined the game');
 	return name;
 }
 
