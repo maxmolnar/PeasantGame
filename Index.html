@@ -88,6 +88,11 @@
                     tiles[tileNmb].height = tileHeight;
                     tiles[tileNmb].x = i * tileWidth + ((j % 2) * tileWidth / 2 - screenLoc.x);
                     tiles[tileNmb].y = j * (tileHeight - (Math.sin(Math.PI/6) * (tileHeight / 2))) - screenLoc.y;
+                    tiles[tileNmb].interactive = true;
+                    tiles[tileNmb].buttonMode = true;
+                    tiles[tileNmb]
+                        .on('pointerover', over)
+                        .on('pointerout', out);
                     stage.addChild(tiles[tileNmb]);   
                     if(boardState[tileNmb].standing == 'peasant'){
                         if(typeof peasants[tileNmb] === "undefined"){
@@ -134,6 +139,17 @@
             renderer.render(stage);
         }
         
+        function over() {
+            this.texture = resources["images/water.png"].texture;
+            console.log('over');
+            renderer.render(stage);
+        }
+        
+        function out() {
+            this.texture = resources["images/ground.png"].texture;
+            console.log('out');
+            renderer.render(stage);
+        }
         
         window.addEventListener('mousemove', function(event) {
             if(mouseDown){
