@@ -35,6 +35,7 @@ if (cluster.isMaster) {
 
   app.use(express.static(__dirname + '/js'));
 
+  //<--NICK--> this is the client id function example here below
   io.on('connection', function(socket){
     console.log('client: ' + socket.id + ' connected');
     playerSpawn(socket.id); 

@@ -215,9 +215,11 @@ module.exports = function() {
 	}
 
 	//adds turn object to proper list
-	this.commitTurn = function(id, tile) {
+	//call this on hex click <--NICK--> check out index.js ~line 38 also
+	this.commitTurn = function(id, tile, action) {
 		turn = {id: id,
-				tile: tile};
+				tile: tile,
+				action: action};
 
 		if (lock === 1) {
 			console.log('atomic error tell max');
