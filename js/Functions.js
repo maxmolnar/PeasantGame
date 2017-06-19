@@ -275,7 +275,15 @@ var getSpawn = function() {
 	return (locX + locY * boardLength);
 }
 
-//returns closest standing to location
-var find = function(location, standing) {
+//returns path array to nearest tile with standing to location
+var bfs = function(location, standing) {
 	var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
+	//create frontier,visited,cameFrom arrays
+
+	//add location to visited
+
+	//add valid neighbors to frontier, uptdate cameFrom
+
+	//goto next frontier, repeat
+
 }
