@@ -118,12 +118,7 @@ module.exports = function() {
 		}
 		lock = 1;
 		
-		//loop through npc list
-		var arr = npcs.toArray();
-		for (var i = 0; i < arr.length; i++) {
-			//assign actions
-
-		}
+		//loop through npc list and assign actions
 
 		//update interactions first
 		 
@@ -138,6 +133,7 @@ module.exports = function() {
 
 		lock = 0;
 		io.emit('board state',board);
+		console.log('updated');
 	}
 
 	//call this when player first connects to game server
@@ -230,7 +226,7 @@ module.exports = function() {
 		var list;
 
 		//move
-		if (board[tile].standing == 'empty') {
+		if (action === 'move') {
 			list = 'moves';
 		}
 
