@@ -287,7 +287,7 @@ var bfs = function(location, standing, board) {
 	if ((location / boardLength) % 2 == 0) {
 		dif--;
 	}
- 	var neighbors[(-dif), (-dif + 1), -1, 1, dif, (dif + 1)];
+ 	var neighbors = [-dif, -dif + 1, -1, 1, dif, dif + 1];
 	//add location to visited
 	visited[current] = 1;
 
