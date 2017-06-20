@@ -276,8 +276,7 @@ var getSpawn = function() {
 }
 
 //returns path array to nearest tile with standing to location
-var bfs = function(location, standing) {
-	var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
+var bfs = function(location, standing, board) {
 	//create frontier,visited,cameFrom arrays
 	var frontier = [];
 	var visited = [boardSize];
@@ -294,7 +293,9 @@ var bfs = function(location, standing) {
 
 	//add valid neighbors to frontier, uptdate cameFrom
 	for (var i = 0; i < 6; i++) {
-		
+		//validate neighbor
+
+		if 
 	}
 
 	//goto next frontier, repeat
