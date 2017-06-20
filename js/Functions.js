@@ -279,10 +279,23 @@ var getSpawn = function() {
 var bfs = function(location, standing) {
 	var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 	//create frontier,visited,cameFrom arrays
+	var frontier = [];
+	var visited = [boardSize];
+	var cameFrom = [];
+	var dif = boardLength;
+	var current = location;
 
+	if ((location / boardLength) % 2 == 0) {
+		dif--;
+	}
+ 	var neighbors[(-dif), (-dif + 1), -1, 1, dif, (dif + 1)];
 	//add location to visited
+	visited[current] = 1;
 
 	//add valid neighbors to frontier, uptdate cameFrom
+	for (var i = 0; i < 6; i++) {
+		
+	}
 
 	//goto next frontier, repeat
 
