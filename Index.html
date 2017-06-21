@@ -92,7 +92,8 @@
                     tiles[tileNmb].buttonMode = true;
                     tiles[tileNmb]
                         .on('pointerover', over)
-                        .on('pointerout', out);
+                        .on('pointerout', out)
+                        .on('pointerdown', clicked);
                     stage.addChild(tiles[tileNmb]);   
                     if(boardState[tileNmb].standing == 'peasant'){
                         if(typeof peasants[tileNmb] === "undefined"){
@@ -149,6 +150,10 @@
             this.texture = resources["images/ground.png"].texture;
             console.log('out');
             renderer.render(stage);
+        }
+        
+        function clicked(id) {
+            console.log(id + 'clicked');    
         }
         
         window.addEventListener('mousemove', function(event) {
