@@ -90,9 +90,10 @@
                     tiles[tileNmb].y = j * (tileHeight - (Math.sin(Math.PI/6) * (tileHeight / 2))) - screenLoc.y;
                     tiles[tileNmb].interactive = true;
                     tiles[tileNmb].buttonMode = true;
+                    tiles[tileNmb].id = tileNmb;
                     tiles[tileNmb]
-                        .on('pointerover', over)
-                        .on('pointerout', out)
+                        //.on('pointerover', over)
+                        //.on('pointerout', out)
                         .on('pointerdown', clicked);
                     stage.addChild(tiles[tileNmb]);   
                     if(boardState[tileNmb].standing == 'peasant'){
@@ -153,7 +154,7 @@
         }
         
         function clicked(id) {
-            console.log(id + 'clicked');    
+            console.log(this.id + ' clicked');    
         }
         
         window.addEventListener('mousemove', function(event) {
