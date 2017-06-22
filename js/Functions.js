@@ -294,8 +294,6 @@ var bfs = function(location, standing, board) {
 	//add valid neighbors to frontier, uptdate cameFrom
 	for (var i = 0; i < 6; i++) {
 		//validate neighbor
-
-		if 
 	}
 
 	//goto next frontier, repeat
