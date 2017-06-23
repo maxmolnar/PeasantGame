@@ -119,7 +119,17 @@ module.exports = function() {
 		lock = 1;
 		
 		//loop through npc list and assign actions
+		var npc;
+		for (var i = 0; i < npcs.length; i++) {
+			//get quest, get current action, procede
+			npc = npcs[i];
+			if (npc.quest === 'Gather Wood') {
+				//if moving, confirm path, move to next tile
+				if (npc.action === 'moving') {
 
+				}
+			}
+		}
 		//update interactions first
 		 
 		//update moves last
