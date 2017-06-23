@@ -312,7 +312,7 @@ var bfs = function(location, standing, board) {
 			n = current + neighbors[i];
 			nbor = board[n];
 
-			if (nbor.terrain === 'grass') {
+			if (nbor.terrain != 'water') {
 				adjacent = 1;
 			}
 
