@@ -299,7 +299,7 @@ var bfs = function(location, standing, board) {
 			adjacent = 0;
 			//validate neighbor
 			//legit nbor, no standing, not visited
-			n = current + neighbors[i]];
+			n = current + neighbors[i];
 			nbor = board[n];
 
 			if (nbor.terrain === 'grass') {
