@@ -280,7 +280,8 @@ var bfs = function(location, standing, board) {
 	//create frontier,visited,cameFrom arrays
 	var frontier = [];
 	var visited = [boardSize];
-	var cameFrom = [];
+	var cameFrom = [boardSize];
+	var path = [];
 	var dif = boardLength;
 	var current = location;
 
@@ -292,10 +293,41 @@ var bfs = function(location, standing, board) {
 	visited[current] = 1;
 
 	//add valid neighbors to frontier, uptdate cameFrom
-	for (var i = 0; i < 6; i++) {
-		//validate neighbor
-	}
+	var nbor, n, adjacent, i;
+	do {
+		for (var i = 0; i < 6; i++) {
+			adjacent = 0;
+			//validate neighbor
+			//legit nbor, no standing, not visited
+			n = current + neighbors[i]];
+			nbor = board[n];
 
-	//goto next frontier, repeat
+			if (nbor.terrain === 'grass') {
+				adjacent = 1;
+			}
 
+			if (adjacent === 1 && nbor.standing === 'empty' && visited[n] != 1) {
+				//add nbor to end of frontier
+				if (nbor.standing === standing) {
+					//n is target destination
+					i = 1;
+					path[0] = n;
+					//deconstruct cameFrom array and return it
+					while (path[i] != location) {
+						path[i] = cameFrom[path[i-1]];
+						i++;
+					}
+					return path;
+				}
+				//add nbor to end of frontier, visited
+				visited[current] = 1;
+				frontier[frontier.length] = n;
+				cameFrom[n] = current;
+			}
+		}
+		//goto next frontier, repeat
+		current = frontier.shift;
+	} while (frontier.length > 0);
+	//object not found
+	return 0;
 }
