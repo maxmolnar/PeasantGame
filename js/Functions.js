@@ -313,7 +313,7 @@ var bfs = function(location, standing, board) {
 					i = 1;
 					path[0] = n;
 					//deconstruct cameFrom array and return it
-					while (path[i] != location) {
+					while (path[i-1] != location) {
 						path[i] = cameFrom[path[i-1]];
 						i++;
 					}
