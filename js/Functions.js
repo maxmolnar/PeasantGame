@@ -329,13 +329,16 @@ var bfs = function(location, standing, board) {
 				cameFrom[n] = current;
 			} else if (nbor.standing === standing) {
 				//n is target destination
+				cameFrom[n] = current;
 				console.log(standing + 'found at ' + n);
 				i = 1;
 				path[0] = n;
 				//deconstruc cameFrom array and return it
 				while (path[i-1] != location) {
+					console.log(path[i-1] + ' came from ' + cameFrom[path[i-1]]);
 					path[i] = cameFrom[path[i-1]];
 					i++;
+//					if (path[i] === undefined) {break;}
 				}
 				return path;
 			}
