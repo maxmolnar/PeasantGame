@@ -278,7 +278,13 @@ module.exports = function() {
 			list = 'interactions';
 		}
 
-		var listData = JSON.parse(fs.readFileSync('json/' + list + '.json', 'utf-8'));
+		var listData;
+		try {	
+			listData = JSON.parse(fs.readFileSync('json/' + list + '.json', 'utf-8'));
+		} catch(err) {
+			listData = [];
+		}
+
 		listData.add(turn);
 		fs.writeFile('json/' + list + '.json', 'utf-8');
 		lock = 0;
