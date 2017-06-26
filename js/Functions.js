@@ -124,8 +124,10 @@ module.exports = function() {
 		for (var i = 0; i < npcs.length; i++) {
 			//get quest, get current action, procede
 			npc = npcs[i];
+			console.log('npc: ' + i);
 			switch (npc.state) {
 				case 'Moving':
+					console.log('moving');
 					if (pathCheck(npc.path, 'tree', board) === 0) {
 						path = bfs(npc.tile, 'tree', board);
 						if (path === 0) {
@@ -141,11 +143,12 @@ module.exports = function() {
 						break;
 					}
 
-					commitTurn(npc.id, npc.path.switch(), 'move');
+					commitTurn(i, npc.path.pop(), 'move');
 					break;
 
 				//undefined
 				default: 
+					console.log('default');
 					if (npc.quest === 'Gather Wood') {
 						path = bfs(npc.tile, 'tree', board);
 
@@ -252,6 +255,7 @@ module.exports = function() {
 	//adds turn object to proper list
 	//call this on hex click <--NICK--> check out index.js ~line 38 also
 	this.commitTurn = function(id, tile, action) {
+		console.log(id + action + tile);
 		turn = {id: id,
 				tile: tile,
 				action: action};
@@ -369,7 +373,6 @@ var bfs = function(location, standing, board) {
 				while (path[i-1] != location) {
 					path[i] = cameFrom[path[i-1]];
 					i++;
-//					if (path[i] === undefined) {break;}
 				}
 				return path;
 			}
