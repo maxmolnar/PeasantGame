@@ -173,6 +173,7 @@ module.exports = function() {
 
 			if (currTurn.id < 250) {
 				//npc move
+
 				board[npcs[currTurn.id].tile].standing = 'empty';
 				npcs[currTurn.id].tile = currTurn.tile;
 				board[currTurn.id].standing = npcs[currTurn.id].role;
@@ -199,7 +200,7 @@ module.exports = function() {
 		//draws board immediately on connection
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		io.emit('config',config);
-        io.emit('board state',board);
+        	io.emit('board state',board);
         
 		if (lock === 1) {
 			console.log('atomic error tell max');
