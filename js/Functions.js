@@ -282,10 +282,7 @@ module.exports = function() {
 		}
 
 		listData[listData.length] = turn;
-		console.log(turn);
-		console.log(listData.length);
-		console.log('move list: ' + listData[0]);
-		fs.writeFile('json/' + list + '.json', 'utf-8');
+		fs.writeFile('json/' + list + '.json', JSON.stringify(listData), 'utf-8');
 		lock = 0;
 	}
 }
