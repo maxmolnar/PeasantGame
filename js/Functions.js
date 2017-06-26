@@ -257,13 +257,8 @@ module.exports = function() {
 	this.commitTurn = function(id, tile, action) {
 		console.log(id + action + tile);
 		turn = {id: id,
-				tile: tile,
-				action: action};
-
-		if (lock === 1) {
-			console.log('atomic error tell max');
-		}
-		lock = 1;
+			tile: tile,
+			action: action};
 
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		var list;
@@ -288,7 +283,8 @@ module.exports = function() {
 
 		listData[listData.length] = turn;
 		console.log(turn);
-		console.log('move list: ' + listData);
+		console.log(listData.length);
+		console.log('move list: ' + listData[0]);
 		fs.writeFile('json/' + list + '.json', 'utf-8');
 		lock = 0;
 	}
