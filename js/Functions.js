@@ -59,6 +59,7 @@ module.exports = function() {
 					stand = 'stone';
 				} else {
 					stand = 'tree';
+					console.log('tree spawned at: ' + i);
 				}
 			}
 			board[i] = {terrain: ter,
@@ -95,6 +96,8 @@ module.exports = function() {
 				quest : 'Gather Wood'
 			};
 		}
+
+		bfs(25, 'tree', board);
 
 		fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');   
@@ -287,10 +290,12 @@ var getSpawn = function() {
 
 //returns path array to nearest tile with standing to location
 var bfs = function(location, standing, board) {
+
+	console.log('bfs called');
 	//create frontier,visited,cameFrom arrays
 	var frontier = [];
-	var visited = [boardSize];
-	var cameFrom = [boardSize];
+	var visited = [board.length];
+	var cameFrom = [board.length];
 	var path = [];
 	var dif = boardLength;
 	var current = location;
@@ -312,32 +317,33 @@ var bfs = function(location, standing, board) {
 			n = current + neighbors[i];
 			nbor = board[n];
 
+			//may need to be changed in future
 			if (nbor.terrain != 'water') {
 				adjacent = 1;
 			}
 
 			if (adjacent === 1 && nbor.standing === 'empty' && visited[n] != 1) {
 				//add nbor to end of frontier
-				if (nbor.standing === standing) {
-					//n is target destination
-					i = 1;
-					path[0] = n;
-					//deconstruct cameFrom array and return it
-					while (path[i-1] != location) {
-						path[i] = cameFrom[path[i-1]];
-						i++;
-					}
-					return path;
-				}
-				//add nbor to end of frontier, visited
 				visited[current] = 1;
 				frontier[frontier.length] = n;
 				cameFrom[n] = current;
+			} else if (nbor.standing === standing) {
+				//n is target destination
+				console.log(standing + 'found at ' + n);
+				i = 1;
+				path[0] = n;
+				//deconstruc cameFrom array and return it
+				while (path[i-1] != location) {
+					path[i] = cameFrom[path[i-1]];
+					i++;
+				}
+				return path;
 			}
 		}
 		//goto next frontier, repeat
-		current = frontier.shift;
+		current = frontier.shift();
 	} while (frontier.length > 0);
 	//object not found
+	console.log('object not found');
 	return 0;
 }
