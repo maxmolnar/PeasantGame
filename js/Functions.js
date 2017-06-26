@@ -126,7 +126,7 @@ module.exports = function() {
 		lock = 1;
 		
 		//loop through npc list and assign actions
-		var npc, path;
+		var npc, path, turn;
 		for (var i = 0; i < npcs.length; i++) {
 			//get quest, get current action, procede
 			npc = npcs[i];
@@ -149,7 +149,10 @@ module.exports = function() {
 						break;
 					}
 
-					commitTurn(i, npc.path.pop(), 'move');
+					turn = {id: i,
+							tile: npc.tile,
+							action: 'move'}; 
+					moves[moves.length] = turn;
 					break;
 
 				//undefined
@@ -171,7 +174,7 @@ module.exports = function() {
 		//update interactions first
 		 
 		//update moves last
-
+		console.log(moves);
 
 		//this may not overwrite completely if new board value has a smaller length
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');
