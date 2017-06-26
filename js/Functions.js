@@ -299,17 +299,25 @@ var bfs = function(location, standing, board) {
 	var path = [];
 	var dif = boardLength;
 	var current = location;
+	var neighbors;
 
 	if ((location / boardLength) % 2 == 0) {
 		dif--;
 	}
- 	var neighbors = [-dif, -dif + 1, -1, 1, dif, dif + 1];
+ 	var nOdd = [-dif, -dif + 1, -1, 1, dif, dif + 1];
+ 	var nEven = [-dif - 1, -dif, -1, 1, dif - 1, dif];
 	//add location to visited
 	visited[current] = 1;
 
 	//add valid neighbors to frontier, uptdate cameFrom
 	var nbor, n, adjacent, i;
 	do {
+		if ((current / boardLength) % 2 == 0) {
+			neighbors = nEven;
+		} else {
+			neighbors = nOdd;
+		}
+
 		for (var i = 0; i < 6; i++) {
 			adjacent = 0;
 			//validate neighbor
