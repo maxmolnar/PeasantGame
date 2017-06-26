@@ -171,7 +171,7 @@ module.exports = function() {
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');
 		fs.writeFile('json/npcs.json', JSON.stringify(npcs), 'utf-8');
 		fs.writeFile('json/interactions.json', '[]', 'utf-8');
-		fs.writeFile('json/moves.json', '[]', 'utf-8');
+		fs.writeFile('json/moves.json', '', 'utf-8');
 
 		lock = 0;
 		io.emit('board state',board);
