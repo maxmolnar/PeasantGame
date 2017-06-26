@@ -93,11 +93,9 @@ module.exports = function() {
 					boots : {},
 					weapon : {}},
 				inventory : {},
-				quest : 'Gather Wood'
+				quest : 'Gather Wood',
 			};
 		}
-
-		bfs(25, 'tree', board);
 
 		fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');   
@@ -122,16 +120,43 @@ module.exports = function() {
 		lock = 1;
 		
 		//loop through npc list and assign actions
-		var npc;
+		var npc, path;
 		for (var i = 0; i < npcs.length; i++) {
 			//get quest, get current action, procede
 			npc = npcs[i];
-			if (npc.quest === 'Gather Wood') {
-				//if moving, confirm path, move to next tile
-				console.log('gathering wood');
-				if (npc.action === 'moving') {
+			switch (npc.state) {
+				case 'Moving':
+					if (pathCheck(npc.path, 'tree', board) === 0) {
+						path = bfs(npc.tile, 'tree', board);
+						if (path === 0) {
+							npc.state = 'Searching';
+							break;
+						}
 
-				}
+						npc.path = path;
+					}
+
+					if (npc.path.length === 1) {
+						npc.state = 'Cutting';
+						break;
+					}
+
+					commitTurn(npc.id, npc.path.switch(), 'move');
+					break;
+
+				//undefined
+				default: 
+					if (npc.quest === 'Gather Wood') {
+						path = bfs(npc.tile, 'tree', board);
+
+						if (path === 0) {
+							npc.state = 'Searching';
+						} else {
+							npc.state = 'Moving';
+							npc.path = path;
+						}
+					}
+
 			}
 		}
 		//update interactions first
@@ -354,4 +379,17 @@ var bfs = function(location, standing, board) {
 	} while (frontier.length > 0);
 	//object not found
 	return 0;
+}
+
+var pathCheck = function(path, standing, board) {
+	for (var i = 0; i < path.length - 1; i++) {
+		if (board[path[i]].standing != 'empty') {
+			return 0;
+		}
+	}
+
+	if (path[path.length] != standing) {
+		return 0;
+	}
+	return 1; 
 }
