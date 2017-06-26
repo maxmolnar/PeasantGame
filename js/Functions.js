@@ -114,6 +114,12 @@ module.exports = function() {
 		var interactions = JSON.parse(fs.readFileSync('json/interactions.json', 'utf-8'));
 		var moves = JSON.parse(fs.readFileSync('json/moves.json', 'utf-8'));
 
+		try {	
+			moves = JSON.parse(fs.readFileSync('json/moves.json', 'utf-8'));
+		} catch(err) {
+			moves = [];
+		}
+
 		if (lock === 1) {
 			console.log('Atomic Error tell max');
 		}
