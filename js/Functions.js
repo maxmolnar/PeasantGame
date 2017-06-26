@@ -97,10 +97,10 @@ module.exports = function() {
 			};
 		}
 
-		fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
+//		fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');   
 		fs.writeFile('json/npcs.json', JSON.stringify(npcs), 'utf-8');     
-		fs.writeFile('json/interactions.json', '[]', 'utf-8');
+//		fs.writeFile('json/interactions.json', '[]', 'utf-8');
 		fs.writeFile('json/moves.json', '[]', 'utf-8');
 	}
 
@@ -253,7 +253,6 @@ module.exports = function() {
 	}
 
 	//adds turn object to proper list
-	//call this on hex click <--NICK--> check out index.js ~line 38 also
 	this.commitTurn = function(id, tile, action) {
 		console.log(id + action + tile);
 		turn = {id: id,
@@ -281,7 +280,7 @@ module.exports = function() {
 			listData = [];
 		}
 
-		listData[listData.length] = turn;
+		listData[0] = turn;
 		fs.writeFile('json/' + list + '.json', JSON.stringify(listData), 'utf-8');
 		lock = 0;
 	}
