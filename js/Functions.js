@@ -141,9 +141,6 @@ module.exports = function() {
 						break;
 					}
 	
-					console.log('npc.tile: ' + npc.tile);
-					console.log('npc path: ' + npc.path);
-
 					turn = {id: i,
 							tile: npc.path.pop(),
 							action: 'move'}; 
@@ -168,7 +165,6 @@ module.exports = function() {
 		//update interactions first
 		 
 		//update moves last
-		console.log(moves);
 		var currTurn;
 		while (moves.length > 0) {
 			currTurn = moves.pop();
