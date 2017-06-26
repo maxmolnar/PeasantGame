@@ -12,10 +12,6 @@ var config = JSON.parse(fs.readFileSync('json/config.json','utf-8'));
 var boardLength = Math.sqrt(config.boardSize);
 var lock = 0;
 
-//Array of interactions and moves to be updated
-var interactions = new List();
-var moves = new List();
-
 //Allows calls from other files
 module.exports = function() {
 	//initializes game state at server start up
@@ -97,10 +93,8 @@ module.exports = function() {
 			};
 		}
 
-//		fs.writeFile('json/players.json', JSON.stringify(players), 'utf-8');
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');   
 		fs.writeFile('json/npcs.json', JSON.stringify(npcs), 'utf-8');     
-//		fs.writeFile('json/interactions.json', '[]', 'utf-8');
 		fs.writeFile('json/moves.json', '[]', 'utf-8');
 	}
 
@@ -130,10 +124,8 @@ module.exports = function() {
 		for (var i = 0; i < npcs.length; i++) {
 			//get quest, get current action, procede
 			npc = npcs[i];
-			console.log('npc: ' + i);
 			switch (npc.state) {
 				case 'Moving':
-					console.log('moving');
 					if (pathCheck(npc.path, 'tree', board) === 0) {
 						path = bfs(npc.tile, 'tree', board);
 						if (path === 0) {
@@ -148,16 +140,18 @@ module.exports = function() {
 						npc.state = 'Cutting';
 						break;
 					}
+	
+					console.log('npc.tile: ' + npc.tile);
+					console.log('npc path: ' + npc.path);
 
 					turn = {id: i,
-							tile: npc.tile,
+							tile: npc.path.pop(),
 							action: 'move'}; 
 					moves[moves.length] = turn;
 					break;
 
 				//undefined
 				default: 
-					console.log('default');
 					if (npc.quest === 'Gather Wood') {
 						path = bfs(npc.tile, 'tree', board);
 
@@ -183,9 +177,9 @@ module.exports = function() {
 
 			if (currTurn.id < 250) {
 				//npc move
-				board[npcs[currTurn.tile]].standing = 'empty';
+				board[npcs[currTurn.id].tile].standing = 'empty';
 				npcs[currTurn.id].tile = currTurn.tile;
-				board[currTurn.tile].standing = npcs[currTurn.id].role;
+				board[currTurn.id].standing = npcs[currTurn.id].role;
 
 			} else {
 				//player move
@@ -401,6 +395,7 @@ var bfs = function(location, standing, board) {
 					path[i] = cameFrom[path[i-1]];
 					i++;
 				}
+				path.length--;
 				return path;
 			}
 		}
