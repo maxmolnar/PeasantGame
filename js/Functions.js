@@ -175,6 +175,23 @@ module.exports = function() {
 		 
 		//update moves last
 		console.log(moves);
+		var currTurn;
+		while (moves.length > 0) {
+			currTurn = moves.pop();
+
+			//check adjacent - general sanity check?
+
+			if (currTurn.id < 250) {
+				//npc move
+				board[npcs[currTurn.tile]].standing = 'empty';
+				npcs[currTurn.id].tile = currTurn.tile;
+				board[currTurn.tile].standing = npcs[currTurn.id].role;
+
+			} else {
+				//player move
+
+			}
+		}
 
 		//this may not overwrite completely if new board value has a smaller length
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');
