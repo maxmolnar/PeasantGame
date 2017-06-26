@@ -287,6 +287,7 @@ module.exports = function() {
 		}
 
 		listData[listData.length] = turn;
+		console.log(turn);
 		console.log('move list: ' + listData);
 		fs.writeFile('json/' + list + '.json', 'utf-8');
 		lock = 0;
