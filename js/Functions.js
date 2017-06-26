@@ -267,6 +267,7 @@ module.exports = function() {
 
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		var list;
+		var n = 0;
 
 		//move
 		if (action === 'move') {
@@ -285,7 +286,8 @@ module.exports = function() {
 			listData = [];
 		}
 
-		listData.add(turn);
+		listData[listData.length] = turn;
+		console.log('move list: ' + listData);
 		fs.writeFile('json/' + list + '.json', 'utf-8');
 		lock = 0;
 	}
