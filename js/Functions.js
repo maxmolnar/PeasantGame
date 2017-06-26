@@ -79,7 +79,7 @@ module.exports = function() {
 
 			var name = getName();
 			npcs[i] = {name: name,
-				tile : 1,
+				tile : location,
 				role : 'peasant',
 				stats : {strength : 4,
 					health : 5,
