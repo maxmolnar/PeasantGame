@@ -128,6 +128,7 @@ module.exports = function() {
 			npc = npcs[i];
 			if (npc.quest === 'Gather Wood') {
 				//if moving, confirm path, move to next tile
+				console.log('gathering wood');
 				if (npc.action === 'moving') {
 
 				}
@@ -291,7 +292,6 @@ var getSpawn = function() {
 //returns path array to nearest tile with standing to location
 var bfs = function(location, standing, board) {
 
-	console.log('bfs called');
 	//create frontier,visited,cameFrom arrays
 	var frontier = [];
 	var visited = [board.length];
@@ -338,12 +338,10 @@ var bfs = function(location, standing, board) {
 			} else if (nbor.standing === standing) {
 				//n is target destination
 				cameFrom[n] = current;
-				console.log(standing + 'found at ' + n);
 				i = 1;
 				path[0] = n;
 				//deconstruc cameFrom array and return it
 				while (path[i-1] != location) {
-					console.log(path[i-1] + ' came from ' + cameFrom[path[i-1]]);
 					path[i] = cameFrom[path[i-1]];
 					i++;
 //					if (path[i] === undefined) {break;}
@@ -355,6 +353,5 @@ var bfs = function(location, standing, board) {
 		current = frontier.shift();
 	} while (frontier.length > 0);
 	//object not found
-	console.log('object not found');
 	return 0;
 }
