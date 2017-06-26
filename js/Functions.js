@@ -112,7 +112,7 @@ module.exports = function() {
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		var npcs = JSON.parse(fs.readFileSync('json/npcs.json', 'utf-8'));
 		var interactions = JSON.parse(fs.readFileSync('json/interactions.json', 'utf-8'));
-		var moves = JSON.parse(fs.readFileSync('json/moves.json', 'utf-8'));
+		var moves;
 
 		try {	
 			moves = JSON.parse(fs.readFileSync('json/moves.json', 'utf-8'));
@@ -286,7 +286,7 @@ module.exports = function() {
 			listData = [];
 		}
 
-		listData[0] = turn;
+		listData[listData.length] = turn;
 		fs.writeFile('json/' + list + '.json', JSON.stringify(listData), 'utf-8');
 		lock = 0;
 	}
