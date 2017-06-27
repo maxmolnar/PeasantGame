@@ -127,12 +127,22 @@ module.exports = function() {
 			switch (npc.state) {
 
 				case 'Cutting':
-					console.log(i + ': ' +  npc.inventory.wood);
+					console.log(i + ' has started cutting');
+
+					if (board[npc.path[0]].standing != 'tree') {
+						npc.state = 'Moving';
+						break;
+					}
 					
 					if (npc.inventory.wood === undefined) {
 						npc.inventory.wood = 1;
 					} else {
 						npc.inventory.wood++;
+					}
+					
+					if (Math.random() < config.treeDespawnRate) {
+						board[npc.path[0]].standing = 'tree'
+						console.log('tree at ' + npc.path[0] + ' has fallen');
 					}
 
 					break;

@@ -3,5 +3,6 @@
 	"baseModifier" : 4,
 	"baseTreeRate" : 0.05,
 	"baseStoneRate" : 0.05,
-	"baseBerryRate" : 0.05
+	"baseBerryRate" : 0.05,
+	"treeDespawnRate" : 0.05
 }
