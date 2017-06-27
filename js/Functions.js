@@ -141,7 +141,7 @@ module.exports = function() {
 					}
 					
 					if (Math.random() < config.treeDespawnRate) {
-						board[npc.path[0]].standing = 'tree'
+						board[npc.path[0]].standing = 'empty';
 						console.log('tree at ' + npc.path[0] + ' has fallen');
 					}
 
