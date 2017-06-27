@@ -125,6 +125,9 @@ module.exports = function() {
 			//get quest, get current action, procede
 			npc = npcs[i];
 			switch (npc.state) {
+				case 'Cutting':
+					console.log(i + ' is cutting');
+					break;
 				case 'Moving':
 					if (pathCheck(npc.path, 'tree', board) === 0) {
 						path = bfs(npc.tile, 'tree', board);
@@ -134,7 +137,7 @@ module.exports = function() {
 						}
 
 						npc.path = path;
-					}
+					} 
 
 					if (npc.path.length === 1) {
 						npc.state = 'Cutting';
