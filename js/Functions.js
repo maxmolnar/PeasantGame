@@ -125,9 +125,11 @@ module.exports = function() {
 			//get quest, get current action, procede
 			npc = npcs[i];
 			switch (npc.state) {
+
 				case 'Cutting':
 					console.log(i + ' is cutting');
 					break;
+
 				case 'Moving':
 					if (pathCheck(npc.path, 'tree', board) === 0) {
 						path = bfs(npc.tile, 'tree', board);
@@ -150,6 +152,12 @@ module.exports = function() {
 					moves[moves.length] = turn;
 					break;
 
+				case 'Returning':
+					break;
+
+				case 'Searching':
+					break;
+					
 				//undefined
 				default: 
 					if (npc.quest === 'Gather Wood') {
