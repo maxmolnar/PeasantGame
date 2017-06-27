@@ -126,7 +126,14 @@ module.exports = function() {
 			npc = npcs[i];
 			switch (npc.state) {
 				case 'Cutting':
-					console.log(i + ' is cutting');
+					console.log(i + ': ' +  npc.inventory.wood);
+					
+					if (npc.inventory.wood === undefined) {
+						npc.inventory.wood = 1;
+					} else {
+						npc.inventory.wood++;
+					}
+
 					break;
 				case 'Moving':
 					if (pathCheck(npc.path, 'tree', board) === 0) {
