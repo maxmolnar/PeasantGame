@@ -148,6 +148,7 @@ module.exports = function() {
 						npc["inventory"][questInfo[npc.quest]["Reward"]]++;
 					}
 			
+					//hardcoded for wood quest rn -- needs changed
 					if (Math.random() < config.treeDespawnRate) {
 						board[npc.path[0]].standing = 'empty';
 						console.log('tree at ' + npc.path[0] + ' has fallen');
