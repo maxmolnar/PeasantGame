@@ -126,7 +126,7 @@ module.exports = function() {
 		lock = 1;
 		
 		//loop through npc list and assign actions
-		var npc, path, turn, target, resource, despawnRate;
+		var npc, path, turn, target, resource, despawnRate, despawnString;
 		for (var i = 0; i < npcs.length; i++) {
 			//get quest, get current action, procede
 			npc = npcs[i];
@@ -148,8 +148,8 @@ module.exports = function() {
 						npc["inventory"][questInfo[npc.quest]["Reward"]]++;
 					}
 			
-					//hardcoded for wood quest rn -- needs changed
-					if (Math.random() < config.treeDespawnRate) {
+					despawnString = target + 'DespawnRate';
+					if (Math.random() < config.despawnString) {
 						board[npc.path[0]].standing = 'empty';
 						console.log('tree at ' + npc.path[0] + ' has fallen');
 					}
