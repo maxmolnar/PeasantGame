@@ -151,8 +151,9 @@ module.exports = function() {
 					break;
 
 				case 'Moving':
-					if (pathCheck(npc.path, questInfo.npc.quest.Target, board === 0)) {
-					//if (pathCheck(npc.path, 'tree', board) === 0) {
+					var quest = questInfo[npc.quest]["Target"];
+					var pathSanity = pathCheck(npc.path, quest, board);
+					if (!pathSanity) {
 						path = bfs(npc.tile, 'tree', board);
 						if (path === 0) {
 							npc.state = 'Searching';
