@@ -126,7 +126,7 @@ module.exports = function() {
 		lock = 1;
 		
 		//loop through npc list and assign actions
-		var npc, path, turn, target;
+		var npc, path, turn, target, resource;
 		for (var i = 0; i < npcs.length; i++) {
 			//get quest, get current action, procede
 			npc = npcs[i];
@@ -141,6 +141,8 @@ module.exports = function() {
 						break;
 					}
 					
+					resource = npc[inventory][questInfo[npc.quest]["Reward"]];
+					console.log(resource);
 					if (npc.inventory.wood === undefined) {
 						npc.inventory.wood = 1;
 					} else {
