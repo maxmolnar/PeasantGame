@@ -12,5 +12,29 @@
 		"tree" : 0.05,
 		"rock" : 0.05,
 		"berry" : 0.05
+	},
+	"armorRate" :
+	{
+		"type" : 
+		{
+			"cloth" : 0.5,
+			"leather" : 0.3,
+			"armor" : 0.2
+		},
+		"quality" :
+		{
+			"poor" : 0.6,
+			"average" : 0.3,
+			"pristine" : 0.1
+		}
+	},
+	"weaponRate" : 
+	{
+		"quality" :
+		{
+			"poor" : 0.6,
+			"average" : 0.3,
+			"pristine" : 0.1
+		}
 	}
 }
