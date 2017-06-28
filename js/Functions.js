@@ -11,6 +11,9 @@ var fs = require('fs');
 var config = JSON.parse(fs.readFileSync('json/config.json','utf-8'));
 var boardLength = Math.sqrt(config.boardSize);
 var lock = 0;
+var questInfo = {'Gather Wood':{'Target':'tree'},
+				'Gather Stone':{'Target':'stone'},
+				'Gather Food':{'Target':'berry'}};
 
 //Allows calls from other files
 module.exports = function() {
@@ -126,7 +129,7 @@ module.exports = function() {
 			npc = npcs[i];
 			switch (npc.state) {
 
-				case 'Cutting':
+				case 'Gathering':
 					console.log(i + ' has started cutting');
 
 					if (board[npc.path[0]].standing != 'tree') {
@@ -159,7 +162,7 @@ module.exports = function() {
 					} 
 
 					if (npc.path.length === 1) {
-						npc.state = 'Cutting';
+						npc.state = 'Gathering';
 						break;
 					}
 	
@@ -167,6 +170,7 @@ module.exports = function() {
 							tile: npc.path.pop(),
 							action: 'move'}; 
 					moves[moves.length] = turn;
+					console.log(npc[i].tile + '->' + turn.tile);
 					break;
 
 				case 'Returning':
