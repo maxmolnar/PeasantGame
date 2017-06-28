@@ -148,8 +148,7 @@ module.exports = function() {
 						npc["inventory"][questInfo[npc.quest]["Reward"]]++;
 					}
 			
-					despawnString = target + 'DespawnRate';
-					if (Math.random() < config.despawnString) {
+					if (Math.random() < config.despawnRate[target]) {
 						board[npc.path[0]].standing = 'empty';
 						console.log('tree at ' + npc.path[0] + ' has fallen');
 					}
