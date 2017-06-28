@@ -1,9 +1,6 @@
 {
 	"boardSize" : 100,
 	"baseModifier" : 4,
-	"baseTreeRate" : 0.05,
-	"baseRockRate" : 0.05,
-	"baseBerryRate" : 0.05,
 	"spawnRate" : 
 	{
 		"tree" : 0.05,
