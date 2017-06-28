@@ -4,5 +4,7 @@
 	"baseTreeRate" : 0.05,
 	"baseRockRate" : 0.05,
 	"baseBerryRate" : 0.05,
-	"treeDespawnRate" : 0.05
+	"despawnRate" : {
+		"tree" : 0.05
+	}
 }
