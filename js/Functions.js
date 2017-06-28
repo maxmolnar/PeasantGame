@@ -114,6 +114,14 @@ module.exports = function() {
 		var interactions = JSON.parse(fs.readFileSync('json/interactions.json', 'utf-8'));
 		var moves;
 
+		var nWeaponsNPC = Math.ceiling(npcs.length * config.armorRate.findRate);
+		var nArmorNPC = Math.ceiling(npcs.length * config.weaponRate.findRate);
+
+		var weapon,chance;
+		while (nWeapons-- > 0) {
+			chance = Math.random();
+		}
+
 		try {	
 			moves = JSON.parse(fs.readFileSync('json/moves.json', 'utf-8'));
 		} catch(err) {
