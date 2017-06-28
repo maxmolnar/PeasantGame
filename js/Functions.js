@@ -170,7 +170,7 @@ module.exports = function() {
 							tile: npc.path.pop(),
 							action: 'move'}; 
 					moves[moves.length] = turn;
-					console.log(npc[i].tile + '->' + turn.tile);
+					console.log(npc.tile + '->' + turn.tile);
 					break;
 
 				case 'Returning':
