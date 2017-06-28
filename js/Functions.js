@@ -123,16 +123,17 @@ module.exports = function() {
 		lock = 1;
 		
 		//loop through npc list and assign actions
-		var npc, path, turn;
+		var npc, path, turn, target;
 		for (var i = 0; i < npcs.length; i++) {
 			//get quest, get current action, procede
 			npc = npcs[i];
+			target = questInfo[npc.quest]["Target"];
 			switch (npc.state) {
 
 				case 'Gathering':
 					console.log(i + ' has started cutting');
 
-					if (board[npc.path[0]].standing != 'tree') {
+					if (board[npc.path[0]].standing != target) {
 						npc.state = 'Moving';
 						break;
 					}
@@ -151,10 +152,9 @@ module.exports = function() {
 					break;
 
 				case 'Moving':
-					var quest = questInfo[npc.quest]["Target"];
-					var pathSanity = pathCheck(npc.path, quest, board);
+					var pathSanity = pathCheck(npc.path, target, board);
 					if (!pathSanity) {
-						path = bfs(npc.tile, 'tree', board);
+						path = bfs(npc.tile, target, board);
 						if (path === 0) {
 							npc.state = 'Searching';
 							break;
