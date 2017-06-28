@@ -30,6 +30,11 @@
 	},
 	"weaponRate" : 
 	{
+		"type" : 
+		{
+			"dagger" : 0.7,
+			"sword" : 0.3
+		},
 		"quality" :
 		{
 			"poor" : 0.6,
