@@ -53,7 +53,7 @@ module.exports = function() {
 				
 				//update structure list
 
-			//Spawn resources randomly
+			//Spawn resources randomly - this might be really inefficient
 			} else if (chance < (config.spawnRate.tree + config.spawnRate.rock + config.spawnRate.berry)) {
 				if (chance > (config.spawnRate.tree + config.spawnRate.rock)) {
 					stand = 'berry';
