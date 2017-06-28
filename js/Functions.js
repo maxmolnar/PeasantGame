@@ -11,9 +11,12 @@ var fs = require('fs');
 var config = JSON.parse(fs.readFileSync('json/config.json','utf-8'));
 var boardLength = Math.sqrt(config.boardSize);
 var lock = 0;
-var questInfo = {'Gather Wood':{'Target':'tree'},
-				'Gather Stone':{'Target':'stone'},
-				'Gather Food':{'Target':'berry'}};
+var questInfo = {'Gather Wood':{'Target':'tree',
+								'Reward':'wood'},
+				'Gather Stone':{'Target':'rock',
+								'Reward':'stone'},
+				'Gather Food':{'Target':'berry',
+								'Reward':'food'}};
 
 //Allows calls from other files
 module.exports = function() {
@@ -51,11 +54,11 @@ module.exports = function() {
 				//update structure list
 
 			//Spawn resources randomly
-			} else if (chance < (config.baseTreeRate + config.baseStoneRate + config.baseBerryRate)) {
-				if (chance > (config.baseTreeRate + config.baseStoneRate)) {
+			} else if (chance < (config.baseTreeRate + config.baseRockRate + config.baseBerryRate)) {
+				if (chance > (config.baseTreeRate + config.baseRockRate)) {
 					stand = 'berry';
 				} else if (chance > config.baseTreeRate) {
-					stand = 'stone';
+					stand = 'rock';
 				} else {
 					stand = 'tree';
 					console.log('tree spawned at: ' + i);
