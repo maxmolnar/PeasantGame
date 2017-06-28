@@ -4,7 +4,16 @@
 	"baseTreeRate" : 0.05,
 	"baseRockRate" : 0.05,
 	"baseBerryRate" : 0.05,
-	"despawnRate" : {
-		"tree" : 0.05
+	"spawnRate" : 
+	{
+		"tree" : 0.05,
+		"rock" : 0.05,
+		"berry" : 0.05
+	},
+	"despawnRate" : 
+	{
+		"tree" : 0.05,
+		"rock" : 0.05,
+		"berry" : 0.05
 	}
 }
