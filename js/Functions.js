@@ -114,11 +114,11 @@ module.exports = function() {
 		var interactions = JSON.parse(fs.readFileSync('json/interactions.json', 'utf-8'));
 		var moves;
 
-		var nWeaponsNPC = Math.ceiling(npcs.length * config.armorRate.findRate);
-		var nArmorNPC = Math.ceiling(npcs.length * config.weaponRate.findRate);
+		var nWeaponsNPC = Math.ceil(npcs.length * config.armorRate.findRate);
+		var nArmorNPC = Math.ceil(npcs.length * config.weaponRate.findRate);
 
 		var weapon,chance;
-		while (nWeapons-- > 0) {
+		while (nWeaponsNPC -- > 0) {
 			chance = Math.random();
 		}
 
