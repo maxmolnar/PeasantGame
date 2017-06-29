@@ -159,7 +159,6 @@ module.exports = function() {
 			console.log(roll);
 
 			//location
-			console.log(config.armor.location.head.dropRate);
 
 			//head
 			if (roll < config.armor.location.head.dropRate) {
@@ -183,7 +182,7 @@ module.exports = function() {
 				armor.location = 'boots';
 			}
 
-			console.log(armor.location);
+			console.log(roll);
 			//type
 
 			//quality
