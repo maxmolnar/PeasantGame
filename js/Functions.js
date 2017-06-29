@@ -121,16 +121,16 @@ module.exports = function() {
 		while (nWeaponsNPC -- > 0) {
 			roll = Math.random();
 			
-			if (roll > config.type.dagger) {
-				roll = (roll - config.type.dagger) / config.type.sword;
+			if (roll > config.weaponRate.type.dagger) {
+				roll = (roll - config.weaponRate.type.dagger) / config.weaponRate.type.sword;
 				weapon.type = 'sword';
 			} else {
-				roll = roll / config.type.dagger;
+				roll = roll / config.weaponRate.type.dagger;
 			}
 
-			if (roll < config.quality.poor) {
+			if (roll < config.weaponRate.quality.poor) {
 				weapon.quality = 'poor';
-			} else if (roll < config.quality.average) {
+			} else if (roll < config.weaponRate.quality.average) {
 				weapon.quality = 'average';
 			} else {
 				weapon.quality = 'pristine';
