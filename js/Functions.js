@@ -182,7 +182,7 @@ module.exports = function() {
 				armor.location = 'boots';
 			}
 
-			console.log(roll);
+			console.log(armor.location);
 			//type
 			if (roll < config.armor.type.cloth.dropRate) {
 				roll = roll / config.armor.type.cloth.dropRate;
