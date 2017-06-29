@@ -159,7 +159,6 @@ module.exports = function() {
 			console.log(roll);
 
 			//location
-			console.log(config.armor.location.head.dropRate);
 
 			//head
 			if (roll < config.armor.location.head.dropRate) {
@@ -185,8 +184,27 @@ module.exports = function() {
 
 			console.log(armor.location);
 			//type
+			if (roll < config.armor.type.cloth.dropRate) {
+				roll = roll / config.armor.type.cloth.dropRate;
+				armor.type = 'cloth';
+			} else if (roll < (config.armor.type.cloth.dropRate + config.armor.type.leather.dropRate)) {
+				roll = (roll - config.armor.type.cloth.dropRate) / config.armor.type.leather.dropRate;
+				armor.type = 'leather';
+			} else {
+				roll = (roll - (1 - config.armor.type.metal.dropRate)) / config.armor.type.metal.dropRate;
+				armor.type = 'metal';
+			}
+			console.log(armor.type);
 
 			//quality
+			if (roll < config.armor.quality.poor.dropRate) {
+				armor.quality = 'poor';
+			} else if (roll < config.armor.quality.average.dropRate + config.weapon.quality.poor.dropRate) {
+				armor.quality = 'average';
+			} else {
+				armor.quality = 'pristine';
+			}
+			console.log(armor.quality);
 		}
 
 		try {	
