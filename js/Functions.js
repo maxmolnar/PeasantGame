@@ -117,7 +117,7 @@ module.exports = function() {
 		var nWeaponsNPC = Math.ceil(npcs.length * config.armorRate.findRate);
 		var nArmorNPC = Math.ceil(npcs.length * config.weaponRate.findRate);
 
-		var roll;
+		var roll, randN;
 		var weapon = {"type" : "",
 				"quality" : ""};
 		while (nWeaponsNPC -- > 0) {
@@ -139,7 +139,8 @@ module.exports = function() {
 				weapon.quality = 'pristine';
 			}
 			console.log(weapon);
-
+			randN = Math.random();
+			console.log(npcs[randN].equpped.weapon);
 		}
 
 		try {	
