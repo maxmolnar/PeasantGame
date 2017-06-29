@@ -88,12 +88,12 @@ module.exports = function() {
 					maxHealth : 5,
 					faith : 0,
 					luck : 4},
-				equipped : {head : {},
-					gloves : {},
-					chest : {},
-					pants : {},
-					boots : {},
-					weapon : {}},
+				equipped : {head : '',
+					gloves : '',
+					chest : '',
+					pants : '',
+					boots : '',
+					weapon : ''},
 				inventory : {},
 				quest : 'Gather Wood',
 			};
@@ -139,8 +139,13 @@ module.exports = function() {
 				weapon.quality = 'pristine';
 			}
 			console.log(weapon);
-			randN = Math.random();
-			console.log(npcs[randN].equpped.weapon);
+			randN = Math.floor(Math.random() * npcs.length);
+			console.log(npcs[randN].equipped.weapon);
+			
+			if (npcs[randN].equipped.weapon === '') {
+				npcs[randN].equipped.weapon = weapon;
+				console.log(npcs[randN].equipped.weapon);
+			}
 		}
 
 		try {	
