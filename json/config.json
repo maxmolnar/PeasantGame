@@ -49,17 +49,20 @@
 			"cloth" : 
 			{
 				"dropRate" : 0.5,
-				"defense" : 1
+				"defense" : 1,
+				"strengthRequired" : 1
 			},
 			"leather" : 
 			{
 				"dropRate" : 0.3,
-				"defense" : 2
+				"defense" : 2,
+				"strengthRequired" : 5
 			},
 			"metal" : 
 			{
 				"dropRate" : 0.2,
-				"defense" : 3
+				"defense" : 3,
+				"strengthRequired" : 10
 			}
 		},
 		"quality" :
@@ -89,12 +92,14 @@
 			"dagger" : 
 			{
 				"dropRate" : 0.7,
-				"strength" : 1
+				"strength" : 1,
+				"strengthRequired" : 1
 			},
 			"sword" : 
 			{
 				"dropRate" : 0.3,
-				"strength" : 2
+				"strength" : 2,
+				"strengthRequired" : 5
 			}
 		},
 		"quality" :

@@ -151,7 +151,11 @@ module.exports = function() {
 			
 			if (npcs[randN].equipped.weapon === '') {
 				npcs[randN].equipped.weapon = weapon;
-			} 
+			} else if ((config.weapon.type[npcs[randN].equipped.weapon.type].strength + config.weapon.type[npcs[randN].equipped.weapon.quality].strength) < (config.weapon[weapon.type].strength + config.weapon[weapon.quality].strenth && config.weapon[weapon.type].strengthRequired < npcs[randN].strength)) {
+
+			} else {
+
+			}
 		}
 
 		while (nArmorNPC-- > 0 ) {
@@ -205,6 +209,12 @@ module.exports = function() {
 				armor.quality = 'pristine';
 			}
 			console.log(armor.quality);
+
+			randN = Math.floor(Math.random() * npcs.length);
+			
+			if (npcs[randN].equipped[armor.type] === '') {
+				npcs[randN].equipped[armor.type] = armor;
+			} 
 		}
 
 		try {	
