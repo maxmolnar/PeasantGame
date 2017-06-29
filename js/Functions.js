@@ -159,13 +159,14 @@ module.exports = function() {
 			console.log(roll);
 
 			//location
+			console.log(config.armor.location.head.dropRate);
 
 			//head
 			if (roll < config.armor.location.head.dropRate) {
 				roll = roll / config.armor.location.head.dropRate;
 				armor.location = 'head';
 			//chest
-			} else if (roll < config.armor.location.head.dropRate + config.armor.location.chest) {
+			} else if (roll < (config.armor.location.head.dropRate + config.armor.location.chest)) {
 				roll = (roll - config.armor.location.head.dropRate) / config.armor.location.chest;
 				armor.location = 'chest';
 			//gloves
@@ -178,7 +179,7 @@ module.exports = function() {
 				armor.location = 'pants';
 			//boots
 			} else {
-				roll = (roll - (1 - config.armor.location.boots.dropRate)) / config.armor.loaction.boots.dropRate;
+				roll = (roll - (1 - config.armor.location.boots.dropRate)) / config.armor.location.boots.dropRate;
 				armor.location = 'boots';
 			}
 
