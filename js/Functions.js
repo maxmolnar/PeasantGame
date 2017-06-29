@@ -166,16 +166,16 @@ module.exports = function() {
 				roll = roll / config.armor.location.head.dropRate;
 				armor.location = 'head';
 			//chest
-			} else if (roll < (config.armor.location.head.dropRate + config.armor.location.chest)) {
+			} else if (roll < (config.armor.location.head.dropRate + config.armor.location.chest.dropRate)) {
 				roll = (roll - config.armor.location.head.dropRate) / config.armor.location.chest;
 				armor.location = 'chest';
 			//gloves
-			} else if (roll < config.armor.location.head.dropRate + config.armor.location.chest + config.armor.location.gloves) {
-				roll = (roll - (config.armor.location.head.dropRate + config.armor.location.chest)) / config.armor.location.gloves;
+			} else if (roll < config.armor.location.head.dropRate + config.armor.location.chest.dropRate + config.armor.location.gloves.dropRate) {
+				roll = (roll - (config.armor.location.head.dropRate + config.armor.location.chest.dropRate)) / config.armor.location.gloves.dropRate;
 				armor.location = 'gloves';
 			//pants
-			} else if (roll < config.armor.location.head.dropRate + config.armor.location.chest + config.armor.location.gloves + config.armor.location.pants) {
-				roll = (roll - (config.armor.location.head.dropRate + config.armor.location.chest + config.armor.location.gloves)) / config.armor.location.pants;
+			} else if (roll < config.armor.location.head.dropRate + config.armor.location.chest.dropRate + config.armor.location.gloves.dropRate + config.armor.location.pants.dropRate) {
+				roll = (roll - (config.armor.location.head.dropRate + config.armor.location.chest.dropRate + config.armor.location.gloves.dropRate)) / config.armor.location.pants.dropRate;
 				armor.location = 'pants';
 			//boots
 			} else {
