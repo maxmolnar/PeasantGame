@@ -13,43 +13,107 @@
 		"rock" : 0.05,
 		"berry" : 0.05
 	},
-	"armorRate" :
+	"armor" :
 	{
 		"findRate" : 0.05,
 		"location" : 
 		{
-			"head" : 0.2,
-			"chest" : 0.2,
-			"gloves" : 0.2,
-			"pants" : 0.2,
-			"boots" : 0.2
+			"head" : 
+			{
+				"dropRate" : 0.2,
+				"defense" : 1
+			},
+			"chest" : 
+			{
+				"dropRate" : 0.2,
+				"defense" : 2
+			},
+			"gloves" : 
+			{
+				"dropRate" : 0.2,
+				"defense" : 1
+			},
+			"pants" : 
+			{
+				"dropRate" : 0.2,
+				"defense" : 2
+			},
+			"boots" : 
+			{
+				"dropRate" : 0.2,
+				"defense" : 1
+			}
 		},
 		"type" : 
 		{
-			"cloth" : 0.5,
-			"leather" : 0.3,
-			"armor" : 0.2
+			"cloth" : 
+			{
+				"dropRate" : 0.5,
+				"defense" : 1
+			},
+			"leather" : 
+			{
+				"dropRate" : 0.3,
+				"defense" : 2
+			},
+			"armor" : 
+			{
+				"dropRate" : 0.2,
+				"defense" : 3
+			}
 		},
 		"quality" :
 		{
-			"poor" : 0.6,
-			"average" : 0.3,
-			"pristine" : 0.1
+			"poor" : 
+			{
+				"dropRate" : 0.6,
+				"defense" : 1
+			},
+			"average" : 
+			{
+				"dropRate" : 0.3,
+				"defense" : 2
+			},
+			"pristine" :
+			{ 
+				"dropRate" : 0.1,
+				"defense" : 3
+			}
 		}
 	},
-	"weaponRate" : 
+	"weapon" : 
 	{
 		"findRate" : 0.05,
 		"type" : 
 		{
-			"dagger" : 0.7,
-			"sword" : 0.3
+			"dagger" : 
+			{
+				"dropRate" : 0.7,
+				"strength" : 1
+			},
+			"sword" : 
+			{
+				"dropRate" : 0.3,
+				"strength" : 2
+			}
 		},
 		"quality" :
 		{
-			"poor" : 0.6,
-			"average" : 0.3,
-			"pristine" : 0.1
+			"poor" : 
+			{
+				"dropRate" : 0.6,
+				"strength" : 1
+			},
+			"average" : 
+			{
+				"dropRate" : 0.3,
+				"strength" : 2
+			},
+			"pristine" : 
+			{
+				"dropRate" : 0.1,
+				"strength" : 3
+			}
 		}
 	}
 }
