@@ -121,9 +121,15 @@ module.exports = function() {
 		var roll, randN;
 		var weapon = {"type" : "",
 				"quality" : ""};
-		while (nWeaponsNPC -- > 0) {
+		var armor = {"type" : "",
+				"quality" : "",
+				"location" : ""};
+
+		//Weapon Roll
+		while (nWeaponsNPC-- > 0) {
 			roll = Math.random();
 			
+			//type
 			if (roll > config.weapon.type.dagger.dropRate) {
 				roll = (roll - config.weapon.type.dagger.dropRate) / config.weapon.type.sword.dropRate;
 				weapon.type = 'sword';
@@ -132,21 +138,54 @@ module.exports = function() {
 				weapon.type = 'dagger';
 			}
 
+			//quality
 			if (roll < config.weapon.quality.poor.dropRate) {
 				weapon.quality = 'poor';
-			} else if (roll < config.weapon.quality.average.dropRate) {
+			} else if (roll < config.weapon.quality.average.dropRate + config.weapon.quality.poor.dropRate) {
 				weapon.quality = 'average';
 			} else {
 				weapon.quality = 'pristine';
 			}
-			console.log(weapon);
+
 			randN = Math.floor(Math.random() * npcs.length);
-			console.log(npcs[randN].equipped.weapon);
 			
 			if (npcs[randN].equipped.weapon === '') {
 				npcs[randN].equipped.weapon = weapon;
-				console.log(npcs[randN].equipped.weapon);
 			} 
+		}
+
+		while (nArmorNPC-- > 0 ) {
+			roll = Math.random();
+			console.log(roll);
+
+			//location
+
+			//head
+			if (roll < config.armor.location.head.dropRate) {
+				roll = roll / config.armor.location.head.dropRate;
+				armor.location = 'head';
+			//chest
+			} else if (roll < config.armor.location.head.dropRate + config.armor.location.chest) {
+				roll = (roll - config.armor.location.head.dropRate) / config.armor.location.chest;
+				armor.location = 'chest';
+			//gloves
+			} else if (roll < config.armor.location.head.dropRate + config.armor.location.chest + config.armor.location.gloves) {
+				roll = (roll - (config.armor.location.head.dropRate + config.armor.location.chest)) / config.armor.location.gloves;
+				armor.location = 'gloves';
+			//pants
+			} else if (roll < config.armor.location.head.dropRate + config.armor.location.chest + config.armor.location.gloves + config.armor.location.pants) {
+				roll = (roll - (config.armor.location.head.dropRate + config.armor.location.chest + config.armor.location.gloves)) / config.armor.location.pants;
+				armor.location = 'pants';
+			//boots
+			} else {
+				roll = (roll - (1 - config.armor.location.boots.dropRate)) / config.armor.loaction.boots.dropRate;
+				armor.location = 'boots';
+			}
+
+			console.log(armor.location);
+			//type
+
+			//quality
 		}
 
 		try {	
