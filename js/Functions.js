@@ -117,23 +117,24 @@ module.exports = function() {
 		var nWeaponsNPC = Math.ceil(npcs.length * config.armorRate.findRate);
 		var nArmorNPC = Math.ceil(npcs.length * config.weaponRate.findRate);
 
+		//Roll random loot to characters
 		var roll, randN;
 		var weapon = {"type" : "",
 				"quality" : ""};
 		while (nWeaponsNPC -- > 0) {
 			roll = Math.random();
 			
-			if (roll > config.weaponRate.type.dagger) {
-				roll = (roll - config.weaponRate.type.dagger) / config.weaponRate.type.sword;
+			if (roll > config.weapon.type.dagger.dropRate) {
+				roll = (roll - config.weapon.type.dagger.dropRate) / config.weapon.type.sword.dropRate;
 				weapon.type = 'sword';
 			} else {
-				roll = roll / config.weaponRate.type.dagger;
+				roll = roll / config.weapon.type.dagger.dropRate;
 				weapon.type = 'dagger';
 			}
 
-			if (roll < config.weaponRate.quality.poor) {
+			if (roll < config.weapon.quality.poor.dropRate) {
 				weapon.quality = 'poor';
-			} else if (roll < config.weaponRate.quality.average) {
+			} else if (roll < config.weapon.quality.average.dropRate) {
 				weapon.quality = 'average';
 			} else {
 				weapon.quality = 'pristine';
@@ -145,7 +146,7 @@ module.exports = function() {
 			if (npcs[randN].equipped.weapon === '') {
 				npcs[randN].equipped.weapon = weapon;
 				console.log(npcs[randN].equipped.weapon);
-			}
+			} 
 		}
 
 		try {	
