@@ -148,14 +148,19 @@ module.exports = function() {
 			}
 
 			randN = Math.floor(Math.random() * npcs.length);
-			
+		
+			//equip weapon
+			/*	
 			if (npcs[randN].equipped.weapon === '') {
 				npcs[randN].equipped.weapon = weapon;
+			//replace weapon
 			} else if ((config.weapon.type[npcs[randN].equipped.weapon.type].strength + config.weapon.type[npcs[randN].equipped.weapon.quality].strength) < (config.weapon[weapon.type].strength + config.weapon[weapon.quality].strenth && config.weapon[weapon.type].strengthRequired < npcs[randN].strength)) {
 
+			//put weapon in inventory
 			} else {
 
 			}
+			*/
 		}
 
 		while (nArmorNPC-- > 0 ) {
