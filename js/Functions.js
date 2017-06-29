@@ -114,8 +114,8 @@ module.exports = function() {
 		var interactions = JSON.parse(fs.readFileSync('json/interactions.json', 'utf-8'));
 		var moves;
 
-		var nWeaponsNPC = Math.ceil(npcs.length * config.armorRate.findRate);
-		var nArmorNPC = Math.ceil(npcs.length * config.weaponRate.findRate);
+		var nWeaponsNPC = Math.ceil(npcs.length * config.armor.findRate);
+		var nArmorNPC = Math.ceil(npcs.length * config.weapon.findRate);
 
 		//Roll random loot to characters
 		var roll, randN;
