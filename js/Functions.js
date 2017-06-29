@@ -117,9 +117,26 @@ module.exports = function() {
 		var nWeaponsNPC = Math.ceil(npcs.length * config.armorRate.findRate);
 		var nArmorNPC = Math.ceil(npcs.length * config.weaponRate.findRate);
 
-		var weapon,chance;
+		var weapon,roll;
 		while (nWeaponsNPC -- > 0) {
-			chance = Math.random();
+			roll = Math.random();
+			
+			if (roll > config.type.dagger) {
+				roll = (roll - config.type.dagger) / config.type.sword;
+				weapon.type = 'sword';
+			} else {
+				roll = roll / config.type.dagger;
+			}
+
+			if (roll < config.quality.poor) {
+				weapon.quality = 'poor';
+			} else if (roll < config.quality.average) {
+				weapon.quality = 'average';
+			} else {
+				weapon.quality = 'pristine';
+			}
+			console.log(weapon);
+
 		}
 
 		try {	
