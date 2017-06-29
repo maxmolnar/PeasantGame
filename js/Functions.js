@@ -117,7 +117,9 @@ module.exports = function() {
 		var nWeaponsNPC = Math.ceil(npcs.length * config.armorRate.findRate);
 		var nArmorNPC = Math.ceil(npcs.length * config.weaponRate.findRate);
 
-		var weapon,roll;
+		var roll;
+		var weapon = {"type" : "",
+				"quality" : ""};
 		while (nWeaponsNPC -- > 0) {
 			roll = Math.random();
 			
@@ -126,6 +128,7 @@ module.exports = function() {
 				weapon.type = 'sword';
 			} else {
 				roll = roll / config.weaponRate.type.dagger;
+				weapon.type = 'dagger';
 			}
 
 			if (roll < config.weaponRate.quality.poor) {
