@@ -96,11 +96,14 @@
                         //.on('pointerout', out)
                         .on('pointerdown', clicked);
                     stage.addChild(tiles[tileNmb]);   
-                    if(boardState[tileNmb].standing == 'peasant'){
+                    if(boardState[tileNmb].standing == ''){
+                        peasants[tileNmb].visibility = false;
+                    }else if(boardState[tileNmb].standing == 'peasant'){
                         if(typeof peasants[tileNmb] === "undefined"){
                             console.log('drawing peasant'); 
                             peasants[tileNmb] = new Sprite(resources["images/peasant.png"].texture);
                         }
+                        peasants[tileNmb].visibility = true;
                         peasants[tileNmb].x = tiles[tileNmb].x + tileWidth / 2 - peasants[tileNmb].width / 2;
                         peasants[tileNmb].y = tiles[tileNmb].y + tileHeight / 2 - peasants[tileNmb].height / 2; 
                         stage.addChild(peasants[tileNmb]);
