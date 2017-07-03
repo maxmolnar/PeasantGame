@@ -323,6 +323,7 @@ module.exports = function() {
 				board[npcs[currTurn.id].tile].standing = 'empty';
 				npcs[currTurn.id].tile = currTurn.tile;
 				board[currTurn.id].standing = npcs[currTurn.id].role;
+				console.log(npcs[currTurn.id].role);
 
 			} else {
 				//player move
