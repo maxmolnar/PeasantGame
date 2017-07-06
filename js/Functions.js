@@ -338,6 +338,14 @@ module.exports = function() {
 		fs.writeFile('json/moves.json', '', 'utf-8');
 
 		lock = 0;
+
+		//test
+		var testCount = 0;
+		while (testCount < board.length) {
+			if (board[testCount].stading === 'peasant') {
+				console.log('Peasant at ' + testCount);
+			}
+		}
 		io.emit('board state',board);
 		console.log('updated');
 	}
