@@ -53,13 +53,12 @@
             .load(setup);
         //This `setup` function will run when the image has loaded
         function setup() {
-            
+            interval = setInterval(animationLoop, 17);
         }
         
         socket.on('board state', function(board){
             boardState = board;
-            drawBoard();
-            console.log('updating board');
+            console.log('board state updated');
         });
 
         socket.on('config', function(conf) {
@@ -144,6 +143,10 @@
             renderer.render(stage);
         }
         
+        function animationLoop(){
+            drawBoard();
+        }
+        
         function over() {
             this.texture = resources["images/water.png"].texture;
             console.log('over');
@@ -164,7 +167,6 @@
             if(mouseDown){
                 screenLoc.x = screenLok.x + mouseLoc.x - event.clientX;
                 screenLoc.y = screenLok.y + mouseLoc.y - event.clientY;
-                drawBoard();
             }
         });
         

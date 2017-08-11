@@ -1,4 +1,4 @@
 @ECHO off
 node index.js
-start chrome https://www.google.co.in/
+start chrome https://localhost:3000
 pause
