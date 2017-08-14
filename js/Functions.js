@@ -111,7 +111,14 @@ module.exports = function() {
 
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		var npcs = JSON.parse(fs.readFileSync('json/npcs.json', 'utf-8'));
-		var interactions = JSON.parse(fs.readFileSync('json/interactions.json', 'utf-8'));
+		var interactions;
+
+		try {	
+			interactions = JSON.parse(fs.readFileSync('json/interactions.json', 'utf-8'));
+		} catch(err) {
+			interactions = [];
+		}
+
 		var moves;
 
 		var nWeaponsNPC = Math.ceil(npcs.length * config.armor.findRate);
@@ -334,6 +341,7 @@ module.exports = function() {
 		//this may not overwrite completely if new board value has a smaller length
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');
 		fs.writeFile('json/npcs.json', JSON.stringify(npcs), 'utf-8');
+		console.log('writing interactions');
 		fs.writeFile('json/interactions.json', '[]', 'utf-8');
 		fs.writeFile('json/moves.json', '', 'utf-8');
 
