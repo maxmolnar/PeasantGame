@@ -111,7 +111,7 @@ module.exports = function() {
 
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		var npcs = JSON.parse(fs.readFileSync('json/npcs.json', 'utf-8'));
-		var interactions;
+		var interactions;	
 
 		try {	
 			interactions = JSON.parse(fs.readFileSync('json/interactions.json', 'utf-8'));
@@ -339,21 +339,24 @@ module.exports = function() {
 		}
 
 		//this may not overwrite completely if new board value has a smaller length
+		console.log(board);
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');
 		fs.writeFile('json/npcs.json', JSON.stringify(npcs), 'utf-8');
-		console.log('writing interactions');
 		fs.writeFile('json/interactions.json', '[]', 'utf-8');
 		fs.writeFile('json/moves.json', '', 'utf-8');
 
 		lock = 0;
 
 		//test
+		/*
+		console.log(board.length);
 		var testCount = 0;
 		while (testCount < board.length) {
-			if (board[testCount].stading === 'peasant') {
+			if (board[testCount].standing === 'peasant') {
 				console.log('Peasant at ' + testCount);
 			}
 		}
+		*/
 		io.emit('board state',board);
 		console.log('updated');
 	}
