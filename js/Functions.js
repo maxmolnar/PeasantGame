@@ -2,7 +2,7 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-//var io = require('socket.io')(http);
+var io = require('socket.io')(http);
 var List = require('collections/list');
 var SortedArrayMap = require('collections/sorted-array-map');
 var fs = require('fs');
@@ -198,7 +198,6 @@ module.exports = function() {
 				armor.location = 'boots';
 			}
 
-			console.log(armor.location);
 			//type
 			if (roll < config.armor.type.cloth.dropRate) {
 				roll = roll / config.armor.type.cloth.dropRate;
@@ -210,7 +209,6 @@ module.exports = function() {
 				roll = (roll - (1 - config.armor.type.metal.dropRate)) / config.armor.type.metal.dropRate;
 				armor.type = 'metal';
 			}
-			console.log(armor.type);
 
 			//quality
 			if (roll < config.armor.quality.poor.dropRate) {
@@ -220,7 +218,6 @@ module.exports = function() {
 			} else {
 				armor.quality = 'pristine';
 			}
-			console.log(armor.quality);
 
 			randN = Math.floor(Math.random() * npcs.length);
 			
@@ -339,7 +336,6 @@ module.exports = function() {
 		}
 
 		//this may not overwrite completely if new board value has a smaller length
-		console.log(board);
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');
 		fs.writeFile('json/npcs.json', JSON.stringify(npcs), 'utf-8');
 		fs.writeFile('json/interactions.json', '[]', 'utf-8');
@@ -357,6 +353,7 @@ module.exports = function() {
 			}
 		}
 		*/
+		console.log('emitting board status?');
 		io.emit('board state',board);
 		console.log('updated');
 	}
@@ -364,6 +361,7 @@ module.exports = function() {
 	//call this when player first connects to game server
 	this.playerSpawn = function(clientID) {
 		//draws board immediately on connection
+		console.log('player connected');
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		io.emit('config',config);
         	io.emit('board state',board);
