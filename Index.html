@@ -59,12 +59,10 @@
         socket.on('board state', function(board){
             boardState = board;
             console.log('<<board state updated>>');
-            alert('called');
         });
 
         socket.on('config', function(conf) {
-            console.log('<<i worked>>');
-            alert('i worked');
+            console.log('<<i worked/get updated>>');
             config = conf;
             boardSize = config.boardSize;
             boardLength = Math.floor(Math.sqrt(boardSize));

@@ -2,7 +2,9 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+//var io = require('socket.io')(http);
+//var io = require('../io').io();
+var io;
 var List = require('collections/list');
 var SortedArrayMap = require('collections/sorted-array-map');
 var fs = require('fs');
@@ -19,7 +21,18 @@ var questInfo = {'Gather Wood':{'Target':'tree',
 								'Reward':'food'}};
 
 //Allows calls from other files
-module.exports = function() {
+module.exports = function(merp) {
+
+	/*io.on('connection', function(socket) {
+        socket.on('message', function(message) {
+            logger.log('info',message.value);
+            socket.emit('ditConsumer',message.value);
+            console.log('from console',message.value);
+        });
+    }); */
+
+    io = merp;
+
 	//initializes game state at server start up
 	this.init = function() {
 
@@ -32,7 +45,7 @@ module.exports = function() {
 
 		//give client config information
 		console.log('emitting');
-		io.emit('config',config);
+		//io.emit('config',config);
 
 		//players.add({id : 0,
 		//			name : 'head'}, 0);
