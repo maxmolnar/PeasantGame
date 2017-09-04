@@ -1,11 +1,13 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var functions = require('./js/Functions.js')();
+const functions = require('./js/Functions.js')  ;
 
 //var io = require('./io').initialize(http);
 var io = require('socket.io')(http);
-require('./js/Functions.js')(io);
+//require('./js/Functions.js')(io);
+functions.setIo(io);
+//setIoTest(io);
 
 var List = require("collections/list");
 const cluster = require('cluster');

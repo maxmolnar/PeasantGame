@@ -4,7 +4,7 @@ var app = express();
 var http = require('http').Server(app);
 //var io = require('socket.io')(http);
 //var io = require('../io').io();
-var io;
+var io = undefined;
 var List = require('collections/list');
 var SortedArrayMap = require('collections/sorted-array-map');
 var fs = require('fs');
@@ -21,17 +21,22 @@ var questInfo = {'Gather Wood':{'Target':'tree',
 								'Reward':'food'}};
 
 //Allows calls from other files
+
+/**
+ *  Set up handlers for the event emitter events we expect on the socket.
+ */
+exports.setIo = function(ioCopy) {
+    console.log('GameList.setIo');
+    io = ioCopy;
+};
+
 module.exports = function(merp) {
+	this.setIoTest = function(ioCopy) {
+		console.log('GameList.setIo');
+		io = ioCopy;
+	}
 
-	/*io.on('connection', function(socket) {
-        socket.on('message', function(message) {
-            logger.log('info',message.value);
-            socket.emit('ditConsumer',message.value);
-            console.log('from console',message.value);
-        });
-    }); */
-
-    io = merp;
+    //io = merp;
 
 	//initializes game state at server start up
 	this.init = function() {
@@ -121,6 +126,7 @@ module.exports = function(merp) {
 	this.update = function() {
 
 		console.log('Calculating Update');
+		console.log(io);
 
 		var board = JSON.parse(fs.readFileSync('json/board.json', 'utf-8'));
 		var npcs = JSON.parse(fs.readFileSync('json/npcs.json', 'utf-8'));
