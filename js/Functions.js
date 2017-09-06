@@ -172,7 +172,6 @@ module.exports = function() {
 
 		while (nArmorNPC-- > 0 ) {
 			roll = Math.random();
-			console.log(roll);
 
 			//location
 
@@ -198,7 +197,6 @@ module.exports = function() {
 				armor.location = 'boots';
 			}
 
-			console.log(armor.location);
 			//type
 			if (roll < config.armor.type.cloth.dropRate) {
 				roll = roll / config.armor.type.cloth.dropRate;
@@ -220,7 +218,6 @@ module.exports = function() {
 			} else {
 				armor.quality = 'pristine';
 			}
-			console.log(armor.quality);
 
 			randN = Math.floor(Math.random() * npcs.length);
 			
@@ -339,7 +336,6 @@ module.exports = function() {
 		}
 
 		//this may not overwrite completely if new board value has a smaller length
-		console.log(board);
 		fs.writeFile('json/board.json', JSON.stringify(board), 'utf8');
 		fs.writeFile('json/npcs.json', JSON.stringify(npcs), 'utf-8');
 		fs.writeFile('json/interactions.json', '[]', 'utf-8');

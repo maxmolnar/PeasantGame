@@ -58,11 +58,11 @@
         
         socket.on('board state', function(board){
             boardState = board;
-            console.log('board state updated');
+            console.log('<<board state updated>>');
         });
 
         socket.on('config', function(conf) {
-            console.log('i worked');
+            console.log('<<i worked>>');
             config = conf;
             boardSize = config.boardSize;
             boardLength = Math.floor(Math.sqrt(boardSize));

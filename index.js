@@ -26,7 +26,7 @@ if (cluster.isMaster) {
   //sets update to run every 5 seconds
   setInterval(update, 5000);
 
-} else {
+//} else {
   //Workers handle all communication
 
   app.get('/', function (req, res) {
