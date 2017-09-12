@@ -93,7 +93,8 @@
                     tiles[tileNmb]
                         //.on('pointerover', over)
                         //.on('pointerout', out)
-                        .on('pointerdown', clicked);
+                    //why does this get called 800 times when you click 
+                        .on('pointerup', clicked);
                     stage.addChild(tiles[tileNmb]);   
                     if(boardState[tileNmb].standing == ''){
                         peasants[tileNmb].visibility = false;
@@ -160,7 +161,8 @@
         }
         
         function clicked(id) {
-            console.log(this.id + ' clicked');    
+            console.log(this.id + ' clicked');
+            
         }
         
         window.addEventListener('mousemove', function(event) {
